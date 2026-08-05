@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart · Tabletop Restaurant Manager</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div>
+        <div>
+          <div class="brand-name">Tabletop</div>
+          <div class="brand-tag">Restaurant Manager</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main menu">
+        <span class="sidebar-section-label">Overview</span>
+        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i><span>Dashboard</span></a>
+        <a href="menu.html" class="sidebar-link"><i class="fa-solid fa-book-open"></i><span>Menu</span></a>
+        <a href="cart.html" class="sidebar-link is-active" aria-current="page"><i
+            class="fa-solid fa-cart-shopping"></i><span>Cart</span></a>
+        <a href="orders.html" class="sidebar-link"><i class="fa-solid fa-receipt"></i><span>Checkout</span></a>
+
+        <span class="sidebar-section-label" style="margin-top: 1rem;">Management</span>
+        <a href="admin.html" class="sidebar-link"><i class="fa-solid fa-user-shield"></i><span>Admin Panel</span></a>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/150?img=12" alt="" />
+          <div>
+            <div class="sidebar-user-name">Amelia Cross</div>
+            <div class="sidebar-user-role">Restaurant Owner</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-col">
+
+      <header class="topbar">
+        <div class="topbar-search">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <label for="global-search" class="visually-hidden">Search</label>
+            <input type="search" id="global-search" placeholder="Search orders, menu items, customers…" />
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-btn" aria-label="View notifications"><i class="fa-regular fa-bell"></i><span class="dot"
+              aria-hidden="true"></span></button>
+          <button class="icon-btn" aria-label="View messages"><i class="fa-regular fa-envelope"></i></button>
+          <div class="topbar-user">
+            <img src="https://i.pravatar.cc/150?img=12" alt="" />
+            <div class="topbar-user-info">
+              <div class="topbar-user-name">Amelia Cross</div>
+              <div class="topbar-user-role">Owner · The Copper Fork</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <div class="content-header">
+          <div>
+            <h1 class="page-title">Your Cart</h1>
+            <p class="page-subtitle">Review items before sending the order to the kitchen</p>
+          </div>
+          <div class="content-header-actions">
+            <a href="menu.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
+          </div>
+        </div>
+
+        <div class="cart-layout">
+
+          <!-- Cart items -->
+          <div class="card">
+            <div class="card-padded" style="padding-bottom: 0;">
+              <div class="card-header">
+                <h2 class="section-heading" id="cart-count">0 Items in Cart</h2>
+              </div>
+            </div>
+            <div id="cart-items">
+
+            </div>
+            <div class="modal-overlay">
+              <div class="modal">
+
+                <div class="modal-header">
+                  <h3>Delete this item?</h3>
+                  <button class="modal-close">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="modal-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                  </div>
+
+                  <p>
+                    Are you sure you want to remove
+                    <strong class="delete-item-name"></strong>
+                    from your cart?
+                    This action cannot be undone.
+                  </p>
+                </div>
+
+                <div class="modal-footer">
+                  <button class="btn btn-cancel">
+                    Cancel
+                  </button>
+
+                  <button class="btn btn-delete">
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Order summary / ticket -->
+          <aside class="ticket card-padded" style="--ticket-notch-top: 168px;">
+            <h2 class="section-heading">Order Summary</h2>
+
+            <div style="margin-top: var(--space-5);">
+              <div class="summary-row"><span>Subtotal</span><span class="value" id="subtotal">RS: 0</span></div>
+              <div class="summary-row"><span>Delivery Fee</span><span class="value" id="delivery-fee">RS: 0</span></div>
+              <div class="summary-row"><span>Tax (8%)</span><span class="value" id="tax">RS: 0</span></div>
+              <div class="summary-row"><span>Discount</span><span class="value" id="discount"
+                  style="color: var(--color-success);">−Rs: 0</span></div>
+            </div>
+
+            <hr class="ticket-tear" />
+
+            <div class="promo-row">
+              <label for="promo-code" class="visually-hidden">Promo code</label>
+              <input type="text" id="promo-code" class="input" placeholder="Enter promo code" />
+              <button class="btn btn-outline">Apply</button>
+            </div>
+
+            <div class="summary-row grand-total">
+              <span>Grand Total</span>
+              <span class="value numeric" id="grand-total">RS: 0</span>
+            </div>
+
+            <div class="cart-actions">
+              <a href="orders.html" class="btn btn-primary btn-lg btn-block">
+                Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="menu.html" class="btn btn-ghost btn-block">Continue Shopping</a>
+            </div>
+          </aside>
+        </div>
+        <div class="toast-stack" style="bottom: var(--space-6); right: var(--space-6);" aria-live="polite">
+          <!-- Order placed successfully -->
+          <div class="toast">
+            <div class="toast-icon"><i class="fa-solid fa-check"></i></div>
+            <div>
+              <div class="toast-title">Deleted successfully</div>
+              <div class="toast-message">Your item has been deleted</div>
+            </div>
+            <button class="toast-close" aria-label="Dismiss notification"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <!-- Order placed successfully -->
+          <div class="toast toast-danger">
+            <div class="toast-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div>
+              <div class="toast-title">Deleted cancel</div>
+              <div class="toast-message">You delete has been cancel.</div>
+            </div>
+            <button class="toast-close" aria-label="Dismiss notification"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+  <script type="module" src="/js/pages/cart.js"></script>
+</body>
+
+</html>

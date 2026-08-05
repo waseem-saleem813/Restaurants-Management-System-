@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel · Tabletop Restaurant Manager</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div>
+        <div>
+          <div class="brand-name">Tabletop</div>
+          <div class="brand-tag">Restaurant Manager</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main menu">
+        <span class="sidebar-section-label">Overview</span>
+        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i><span>Dashboard</span></a>
+        <a href="menu.html" class="sidebar-link"><i class="fa-solid fa-book-open"></i><span>Menu</span></a>
+        <a href="cart.html" class="sidebar-link"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a>
+        <a href="orders.html" class="sidebar-link"><i class="fa-solid fa-receipt"></i><span>Checkout</span></a>
+
+        <span class="sidebar-section-label" style="margin-top: 1rem;">Management</span>
+        <a href="admin.html" class="sidebar-link is-active" aria-current="page"><i class="fa-solid fa-user-shield"></i><span>Admin Panel</span></a>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/150?img=12" alt="" />
+          <div>
+            <div class="sidebar-user-name">Amelia Cross</div>
+            <div class="sidebar-user-role">Restaurant Owner</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-col">
+
+      <header class="topbar">
+        <div class="topbar-search">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <label for="global-search" class="visually-hidden">Search</label>
+            <input type="search" id="global-search" placeholder="Search orders, menu items, customers…" />
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-btn" aria-label="View notifications"><i class="fa-regular fa-bell"></i><span class="dot" aria-hidden="true"></span></button>
+          <button class="icon-btn" aria-label="View messages"><i class="fa-regular fa-envelope"></i></button>
+          <div class="topbar-user">
+            <img src="https://i.pravatar.cc/150?img=12" alt="" />
+            <div class="topbar-user-info">
+              <div class="topbar-user-name">Amelia Cross</div>
+              <div class="topbar-user-role">Owner · The Copper Fork</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <div class="content-header">
+          <div>
+            <h1 class="page-title">Admin Panel</h1>
+            <p class="page-subtitle">Manage your menu catalogue, pricing and availability</p>
+          </div>
+        </div>
+
+        <!-- Statistic cards -->
+        <section class="stat-grid" aria-label="Admin statistics">
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <div class="stat-icon orange"><i class="fa-solid fa-utensils"></i></div>
+            </div>
+            <div class="stat-value numeric">86</div>
+            <div class="stat-label">Total Menu Items</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+            </div>
+            <div class="stat-value numeric">79</div>
+            <div class="stat-label">Active Items</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <div class="stat-icon yellow"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            </div>
+            <div class="stat-value numeric">7</div>
+            <div class="stat-label">Out of Stock</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <div class="stat-icon blue"><i class="fa-solid fa-tags"></i></div>
+            </div>
+            <div class="stat-value numeric">6</div>
+            <div class="stat-label">Categories</div>
+          </article>
+        </section>
+
+        <!-- Add Food Form -->
+        <div class="card card-padded" style="margin-bottom: var(--space-7);">
+          <div class="card-header">
+            <div>
+              <h2 class="section-heading">Add New Food Item</h2>
+              <p>Fill in the details below to publish a new dish to the live menu</p>
+            </div>
+          </div>
+
+          <form>
+            <div class="admin-form-grid">
+              <div class="form-group">
+                <label for="food-name" class="form-label">Food Name</label>
+                <input type="text" id="food-name" class="input" placeholder="e.g. Smoked Chicken Wrap" required />
+              </div>
+              <div class="form-group">
+                <label for="food-category" class="form-label">Category</label>
+                <select id="food-category" class="select" required>
+                  <option value="">Select a category</option>
+                  <option>Starters</option>
+                  <option>Main Course</option>
+                  <option>Burgers</option>
+                  <option>Pizza</option>
+                  <option>Desserts</option>
+                  <option>Beverages</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="food-price" class="form-label">Price (USD)</label>
+                <input type="number" id="food-price" class="input" placeholder="0.00" step="0.01" min="0" required />
+              </div>
+              <div class="form-group">
+                <label for="food-stock" class="form-label">Stock Status</label>
+                <select id="food-stock" class="select">
+                  <option>In Stock</option>
+                  <option>Low Stock</option>
+                  <option>Out of Stock</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label for="food-desc" class="form-label">Description</label>
+                <textarea id="food-desc" class="textarea" placeholder="Short description shown on the menu card…"></textarea>
+              </div>
+              <div class="form-group full-width">
+                <label class="form-label">Food Image</label>
+                <div class="image-upload-box">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  Drag and drop an image here, or <strong style="color: var(--color-primary-dark);">browse files</strong>
+                  <div class="form-hint" style="margin-top: var(--space-2);">PNG or JPG, up to 5MB</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-footer-bar" style="margin-top: var(--space-6);">
+              <button type="button" class="btn btn-ghost">Cancel</button>
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Publish Item</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Edit Food Form Layout (reference) -->
+        <div class="card card-padded" style="margin-bottom: var(--space-7);">
+          <div class="card-header">
+            <div>
+              <h2 class="section-heading">Edit Food Item</h2>
+              <p>Layout reference — pre-filled with an existing item's details</p>
+            </div>
+            <span class="badge badge-warning">Editing: Margherita Pizza</span>
+          </div>
+
+          <form>
+            <div class="admin-form-grid">
+              <div class="form-group">
+                <label for="edit-food-name" class="form-label">Food Name</label>
+                <input type="text" id="edit-food-name" class="input" value="Margherita Pizza" />
+              </div>
+              <div class="form-group">
+                <label for="edit-food-category" class="form-label">Category</label>
+                <select id="edit-food-category" class="select">
+                  <option selected>Pizza</option>
+                  <option>Starters</option>
+                  <option>Main Course</option>
+                  <option>Burgers</option>
+                  <option>Desserts</option>
+                  <option>Beverages</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="edit-food-price" class="form-label">Price (USD)</label>
+                <input type="number" id="edit-food-price" class="input" value="16.50" step="0.01" />
+              </div>
+              <div class="form-group">
+                <label for="edit-food-stock" class="form-label">Stock Status</label>
+                <select id="edit-food-stock" class="select">
+                  <option selected>In Stock</option>
+                  <option>Low Stock</option>
+                  <option>Out of Stock</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label for="edit-food-desc" class="form-label">Description</label>
+                <textarea id="edit-food-desc" class="textarea">San Marzano tomato sauce, fresh mozzarella, basil leaves and extra virgin olive oil.</textarea>
+              </div>
+            </div>
+
+            <div class="settings-footer-bar" style="margin-top: var(--space-6);">
+              <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete Item</button>
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Menu table -->
+        <div class="card card-padded">
+          <div class="admin-toolbar">
+            <div class="search-box" style="max-width: 320px;">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <label for="admin-search" class="visually-hidden">Search menu items</label>
+              <input type="search" id="admin-search" placeholder="Search menu items…" />
+            </div>
+            <div class="admin-toolbar-filters">
+              <select class="select" aria-label="Filter by category">
+                <option>All Categories</option>
+                <option>Starters</option>
+                <option>Main Course</option>
+                <option>Burgers</option>
+                <option>Pizza</option>
+                <option>Desserts</option>
+                <option>Beverages</option>
+              </select>
+              <select class="select" aria-label="Filter by status">
+                <option>All Status</option>
+                <option>In Stock</option>
+                <option>Low Stock</option>
+                <option>Out of Stock</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <caption class="visually-hidden">Menu items management table</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Item</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="food-thumb-cell">
+                      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=100&h=100&fit=crop" alt="" />
+                      <span class="table-cell-title">Grilled Beef Burger</span>
+                    </div>
+                  </td>
+                  <td>Burgers</td>
+                  <td class="numeric">$12.90</td>
+                  <td><span class="badge badge-success">In Stock</span></td>
+                  <td><span class="rating"><i class="fa-solid fa-star"></i> 4.8</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="icon-btn btn-icon-only" aria-label="Edit Grilled Beef Burger"><i class="fa-solid fa-pen"></i></button>
+                      <button class="icon-btn btn-icon-only" aria-label="Delete Grilled Beef Burger" style="color: var(--color-danger);"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="food-thumb-cell">
+                      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=100&h=100&fit=crop" alt="" />
+                      <span class="table-cell-title">Margherita Pizza</span>
+                    </div>
+                  </td>
+                  <td>Pizza</td>
+                  <td class="numeric">$16.50</td>
+                  <td><span class="badge badge-success">In Stock</span></td>
+                  <td><span class="rating"><i class="fa-solid fa-star"></i> 4.6</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="icon-btn btn-icon-only" aria-label="Edit Margherita Pizza"><i class="fa-solid fa-pen"></i></button>
+                      <button class="icon-btn btn-icon-only" aria-label="Delete Margherita Pizza" style="color: var(--color-danger);"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="food-thumb-cell">
+                      <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=100&h=100&fit=crop" alt="" />
+                      <span class="table-cell-title">Creamy Alfredo Pasta</span>
+                    </div>
+                  </td>
+                  <td>Main Course</td>
+                  <td class="numeric">$14.20</td>
+                  <td><span class="badge badge-warning">Low Stock</span></td>
+                  <td><span class="rating"><i class="fa-solid fa-star"></i> 4.7</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="icon-btn btn-icon-only" aria-label="Edit Creamy Alfredo Pasta"><i class="fa-solid fa-pen"></i></button>
+                      <button class="icon-btn btn-icon-only" aria-label="Delete Creamy Alfredo Pasta" style="color: var(--color-danger);"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="food-thumb-cell">
+                      <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=100&h=100&fit=crop" alt="" />
+                      <span class="table-cell-title">Molten Chocolate Cake</span>
+                    </div>
+                  </td>
+                  <td>Desserts</td>
+                  <td class="numeric">$8.90</td>
+                  <td><span class="badge badge-danger">Out of Stock</span></td>
+                  <td><span class="rating"><i class="fa-solid fa-star"></i> 4.9</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="icon-btn btn-icon-only" aria-label="Edit Molten Chocolate Cake"><i class="fa-solid fa-pen"></i></button>
+                      <button class="icon-btn btn-icon-only" aria-label="Delete Molten Chocolate Cake" style="color: var(--color-danger);"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <nav class="pagination" aria-label="Menu table pages">
+            <button class="page-btn" aria-label="Previous page"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="page-btn is-active" aria-current="page">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn" aria-label="Next page"><i class="fa-solid fa-chevron-right"></i></button>
+          </nav>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu · Tabletop Restaurant Manager</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div>
+        <div>
+          <div class="brand-name">Tabletop</div>
+          <div class="brand-tag">Restaurant Manager</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main menu">
+        <span class="sidebar-section-label">Overview</span>
+        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i><span>Dashboard</span></a>
+        <a href="menu.html" class="sidebar-link is-active" aria-current="page"><i class="fa-solid fa-book-open"></i><span>Menu</span></a>
+        <a href="cart.html" class="sidebar-link"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a>
+        <a href="orders.html" class="sidebar-link"><i class="fa-solid fa-receipt"></i><span>Checkout</span></a>
+
+        <span class="sidebar-section-label" style="margin-top: 1rem;">Management</span>
+        <a href="admin.html" class="sidebar-link"><i class="fa-solid fa-user-shield"></i><span>Admin Panel</span></a>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/150?img=12" alt="" />
+          <div>
+            <div class="sidebar-user-name">Amelia Cross</div>
+            <div class="sidebar-user-role">Restaurant Owner</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-col">
+
+      <header class="topbar">
+        <div class="topbar-search">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <label for="global-search" class="visually-hidden">Search</label>
+            <input type="search" id="global-search" placeholder="Search orders, menu items, customers…" />
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-btn" aria-label="View notifications"><i class="fa-regular fa-bell"></i><span class="dot" aria-hidden="true"></span></button>
+          <button class="icon-btn" aria-label="View messages"><i class="fa-regular fa-envelope"></i></button>
+          <div class="topbar-user">
+            <img src="https://i.pravatar.cc/150?img=12" alt="" />
+            <div class="topbar-user-info">
+              <div class="topbar-user-name">Amelia Cross</div>
+              <div class="topbar-user-role">Owner · The Copper Fork</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <div class="content-header">
+          <div>
+            <h1 class="page-title">Menu</h1>
+            <p class="page-subtitle">Browse the full menu, filter by category and add items to an order</p>
+          </div>
+          <div class="content-header-actions">
+            <a href="cart.html" class="btn btn-outline"><i class="fa-solid fa-cart-shopping" ></i><span id="cartUpdate"></span></a>
+            <a href="admin.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Food Item</a>
+          </div>
+        </div>
+
+        <!-- Search + toolbar -->
+        <div class="menu-toolbar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <label for="menu-search" class="visually-hidden">Search menu items</label>
+            <input type="search" id="menu-search" placeholder="Search for dishes, ingredients…" />
+          </div>
+          <select class="select" style="max-width: 200px;" aria-label="Sort menu items">
+            <option>Sort by: Popular</option>
+            <option>Sort by: Price (low–high)</option>
+            <option>Sort by: Price (high–low)</option>
+            <option>Sort by: Rating</option>
+          </select>
+        </div>
+
+        <!-- Category filter chips -->
+        <div class="category-filters" role="group" aria-label="Filter by category">
+          <span class="tag is-active">All Items</span>
+          <span class="tag">Starters</span>
+          <span class="tag">Main Course</span>
+          <span class="tag">Burgers</span>
+          <span class="tag">Pizza</span>
+          <span class="tag">Desserts</span>
+          <span class="tag">Beverages</span>
+        </div>
+
+        <!-- Price filter -->
+        <div class="price-filter-panel">
+          <span class="form-label" style="white-space: nowrap;">Price Range</span>
+          <div class="price-range-track">
+            <div class="price-range-fill"></div>
+            <span class="price-range-handle min"></span>
+            <span class="price-range-handle max"></span>
+          </div>
+          <span class="price-value-box numeric">$5 – $35</span>
+          <button class="btn btn-ghost btn-sm">Reset</button>
+        </div>
+
+        <!-- Food card grid -->
+        <section class="food-grid" id="food-grid" aria-label="Menu items">
+
+        </section>
+
+        <!-- Pagination -->
+        <nav class="pagination" aria-label="Menu pages">
+          <button class="page-btn" aria-label="Previous page"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="page-btn is-active" aria-current="page">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn" aria-label="Next page"><i class="fa-solid fa-chevron-right"></i></button>
+        </nav>         
+
+      </main>
+    </div>
+  </div>
+  <script type="module" src="/js/pages/menu.js"></script>
+</body>
+</html>

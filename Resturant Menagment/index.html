@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard · Tabletop Restaurant Manager</title>
+
+  <!-- Google Fonts: Poppins (display), Inter (body), JetBrains Mono (data/numeric) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div>
+        <div>
+          <div class="brand-name">Tabletop</div>
+          <div class="brand-tag">Restaurant Manager</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main menu">
+        <span class="sidebar-section-label">Overview</span>
+        <a href="index.html" class="sidebar-link is-active" aria-current="page"><i
+            class="fa-solid fa-grid-2"></i><span>Dashboard</span></a>
+        <a href="menu.html" class="sidebar-link"><i class="fa-solid fa-book-open"></i><span>Menu</span></a>
+        <a href="cart.html" class="sidebar-link"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a>
+        <a href="orders.html" class="sidebar-link"><i class="fa-solid fa-receipt"></i><span>Checkout</span></a>
+
+        <span class="sidebar-section-label" style="margin-top: 1rem;">Management</span>
+        <a href="admin.html" class="sidebar-link"><i class="fa-solid fa-user-shield"></i><span>Admin Panel</span></a>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/150?img=12" alt="" />
+          <div>
+            <div class="sidebar-user-name">Amelia Cross</div>
+            <div class="sidebar-user-role">Restaurant Owner</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN COLUMN ============ -->
+    <div class="main-col">
+
+      <!-- ============ TOPBAR ============ -->
+      <header class="topbar">
+        <div class="topbar-search">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <label for="global-search" class="visually-hidden">Search orders, menu items or customers</label>
+            <input type="search" id="global-search" placeholder="Search orders, menu items, customers…" />
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-btn" aria-label="View notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="dot" aria-hidden="true"></span>
+          </button>
+          <button class="icon-btn" aria-label="View messages">
+            <i class="fa-regular fa-envelope"></i>
+          </button>
+          <div class="topbar-user">
+            <img src="https://i.pravatar.cc/150?img=12" alt="" />
+            <div class="topbar-user-info">
+              <div class="topbar-user-name">Amelia Cross</div>
+              <div class="topbar-user-role">Owner · The Copper Fork</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ CONTENT ============ -->
+      <main class="content">
+
+        <!-- Welcome banner -->
+        <section class="welcome-banner" aria-labelledby="welcome-heading">
+          <div>
+            <h1 id="welcome-heading">Good afternoon, Amelia 👋</h1>
+            <p>Here's how The Copper Fork is performing today. Orders are up 12% since lunch service began.</p>
+            <div class="welcome-meta">
+              <div>08 <span>Tables occupied</span></div>
+              <div>14 <span>Open orders</span></div>
+              <div>04m <span>Avg. prep time</span></div>
+            </div>
+          </div>
+          <a href="orders.html" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-plus"></i> New Order
+          </a>
+        </section>
+
+        <!-- Statistic cards -->
+        <section class="stat-grid" aria-label="Key statistics">
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <div class="stat-icon orange"><i class="fa-solid fa-bag-shopping"></i></div>
+              <span class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> 8.2%</span>
+            </div>
+            <div class="stat-value numeric" id="total-orders">1,248</div>
+            <div class="stat-label">Total Orders</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <div class="stat-icon green"><i class="fa-solid fa-sack-dollar"></i></div>
+              <span class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> 14.6%</span>
+            </div>
+            <div class="stat-value numeric" id="total-revenue">$48,920</div>
+            <div class="stat-label">Revenue this month</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+              <span class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> 3.1%</span>
+            </div>
+            <div class="stat-value numeric" id="total-customers">3,502</div>
+            <div class="stat-label">Total Customers</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <div class="stat-icon yellow"><i class="fa-solid fa-utensils"></i></div>
+              <span class="stat-trend down"><i class="fa-solid fa-arrow-down"></i> 1.4%</span>
+            </div>
+            <div class="stat-value numeric" id="total-menu-items">0</div>
+            <div class="stat-label">Menu Items</div>
+          </article>
+        </section>
+
+        <!-- Recent orders + popular foods -->
+        <section class="dashboard-grid">
+
+          <div class="card card-padded">
+            <div class="card-header">
+              <div>
+                <h2 class="section-heading">Recent Orders</h2>
+                <p>Latest activity across dine-in, pickup and delivery</p>
+              </div>
+              <a href="orders.html" class="btn btn-outline btn-sm">View all</a>
+            </div>
+
+            <div class="table-wrap">
+              <table class="data-table">
+                <caption class="visually-hidden">Recent customer orders</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Order</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Items</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="table-order-id">#ORD-2291</td>
+                    <td>
+                      <div class="table-cell-user">
+                        <img src="https://i.pravatar.cc/150?img=32" alt="" />
+                        <div>
+                          <div class="table-cell-title">Daniel Reyes</div>
+                          <div class="table-cell-sub">Table 4 · Dine-in</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>3 items</td>
+                    <td class="numeric">$42.50</td>
+                    <td><span class="badge badge-success">Served</span></td>
+                  </tr>
+                  <tr>
+                    <td class="table-order-id">#ORD-2290</td>
+                    <td>
+                      <div class="table-cell-user">
+                        <img src="https://i.pravatar.cc/150?img=45" alt="" />
+                        <div>
+                          <div class="table-cell-title">Priya Nair</div>
+                          <div class="table-cell-sub">Delivery · Gulshan</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>5 items</td>
+                    <td class="numeric">$67.00</td>
+                    <td><span class="badge badge-warning">Preparing</span></td>
+                  </tr>
+                  <tr>
+                    <td class="table-order-id">#ORD-2289</td>
+                    <td>
+                      <div class="table-cell-user">
+                        <img src="https://i.pravatar.cc/150?img=15" alt="" />
+                        <div>
+                          <div class="table-cell-title">Omar Farooq</div>
+                          <div class="table-cell-sub">Table 9 · Dine-in</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>2 items</td>
+                    <td class="numeric">$24.90</td>
+                    <td><span class="badge badge-info">New</span></td>
+                  </tr>
+                  <tr>
+                    <td class="table-order-id">#ORD-2288</td>
+                    <td>
+                      <div class="table-cell-user">
+                        <img src="https://i.pravatar.cc/150?img=23" alt="" />
+                        <div>
+                          <div class="table-cell-title">Laila Ahmed</div>
+                          <div class="table-cell-sub">Pickup · Counter</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>1 item</td>
+                    <td class="numeric">$11.00</td>
+                    <td><span class="badge badge-danger">Cancelled</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card card-padded">
+            <div class="card-header">
+              <div>
+                <h2 class="section-heading">Popular Foods</h2>
+                <p>Best sellers this week</p>
+              </div>
+            </div>
+
+            <ul>
+              <li class="popular-food-item">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=120&h=120&fit=crop" alt="" />
+                <div class="popular-food-info">
+                  <div class="popular-food-name">Grilled Beef Burger</div>
+                  <div class="popular-food-orders">312 orders</div>
+                </div>
+                <div class="popular-food-price numeric">$12.90</div>
+              </li>
+              <li class="popular-food-item">
+                <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=120&h=120&fit=crop" alt="" />
+                <div class="popular-food-info">
+                  <div class="popular-food-name">Margherita Pizza</div>
+                  <div class="popular-food-orders">287 orders</div>
+                </div>
+                <div class="popular-food-price numeric">$16.50</div>
+              </li>
+              <li class="popular-food-item">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=120&h=120&fit=crop" alt="" />
+                <div class="popular-food-info">
+                  <div class="popular-food-name">Creamy Alfredo Pasta</div>
+                  <div class="popular-food-orders">241 orders</div>
+                </div>
+                <div class="popular-food-price numeric">$14.20</div>
+              </li>
+              <li class="popular-food-item">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=120&h=120&fit=crop" alt="" />
+                <div class="popular-food-info">
+                  <div class="popular-food-name">Fresh Garden Salad</div>
+                  <div class="popular-food-orders">198 orders</div>
+                </div>
+                <div class="popular-food-price numeric">$9.50</div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Quick actions -->
+        <section aria-labelledby="quick-actions-heading">
+          <div class="card-header">
+            <h2 class="section-heading" id="quick-actions-heading">Quick Actions</h2>
+          </div>
+          <div class="quick-actions-grid">
+            <a href="admin.html" class="quick-action-card">
+              <div class="quick-action-icon"><i class="fa-solid fa-plus"></i></div>
+              <span>Add Food Item</span>
+            </a>
+            <a href="orders.html" class="quick-action-card">
+              <div class="quick-action-icon"><i class="fa-solid fa-receipt"></i></div>
+              <span>Create Order</span>
+            </a>
+            <a href="admin.html" class="quick-action-card">
+              <div class="quick-action-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <span>View Reports</span>
+            </a>
+            <a href="settings.html" class="quick-action-card">
+              <div class="quick-action-icon"><i class="fa-solid fa-sliders"></i></div>
+              <span>Manage Settings</span>
+            </a>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="/js/pages/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings · Tabletop Restaurant Manager</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div>
+        <div>
+          <div class="brand-name">Tabletop</div>
+          <div class="brand-tag">Restaurant Manager</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main menu">
+        <span class="sidebar-section-label">Overview</span>
+        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i><span>Dashboard</span></a>
+        <a href="menu.html" class="sidebar-link"><i class="fa-solid fa-book-open"></i><span>Menu</span></a>
+        <a href="cart.html" class="sidebar-link"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a>
+        <a href="orders.html" class="sidebar-link"><i class="fa-solid fa-receipt"></i><span>Checkout</span></a>
+
+        <span class="sidebar-section-label" style="margin-top: 1rem;">Management</span>
+        <a href="admin.html" class="sidebar-link"><i class="fa-solid fa-user-shield"></i><span>Admin Panel</span></a>
+        <a href="settings.html" class="sidebar-link is-active" aria-current="page"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/150?img=12" alt="" />
+          <div>
+            <div class="sidebar-user-name">Amelia Cross</div>
+            <div class="sidebar-user-role">Restaurant Owner</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-col">
+
+      <header class="topbar">
+        <div class="topbar-search">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <label for="global-search" class="visually-hidden">Search</label>
+            <input type="search" id="global-search" placeholder="Search orders, menu items, customers…" />
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-btn" aria-label="View notifications"><i class="fa-regular fa-bell"></i><span class="dot" aria-hidden="true"></span></button>
+          <button class="icon-btn" aria-label="View messages"><i class="fa-regular fa-envelope"></i></button>
+          <div class="topbar-user">
+            <img src="https://i.pravatar.cc/150?img=12" alt="" />
+            <div class="topbar-user-info">
+              <div class="topbar-user-name">Amelia Cross</div>
+              <div class="topbar-user-role">Owner · The Copper Fork</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <div class="content-header">
+          <div>
+            <h1 class="page-title">Settings</h1>
+            <p class="page-subtitle">Manage your restaurant profile, appearance and regional preferences</p>
+          </div>
+        </div>
+
+        <form class="settings-layout" aria-label="Settings form">
+
+          <!-- Settings navigation -->
+          <nav class="settings-nav card card-padded" aria-label="Settings sections">
+            <a href="#general" class="is-active"><i class="fa-solid fa-store" style="margin-right: 8px;"></i>General</a>
+            <a href="#appearance"><i class="fa-solid fa-palette" style="margin-right: 8px;"></i>Appearance</a>
+            <a href="#regional"><i class="fa-solid fa-globe" style="margin-right: 8px;"></i>Regional</a>
+            <a href="#notifications"><i class="fa-solid fa-bell" style="margin-right: 8px;"></i>Notifications</a>
+            <a href="#security"><i class="fa-solid fa-lock" style="margin-right: 8px;"></i>Security</a>
+          </nav>
+
+          <div>
+            <!-- General -->
+            <div class="card card-padded" id="general" style="margin-bottom: var(--space-6);">
+              <h2 class="section-heading" style="margin-bottom: var(--space-5);">General</h2>
+
+              <div class="form-group">
+                <label for="restaurant-name" class="form-label">Restaurant Name</label>
+                <input type="text" id="restaurant-name" class="input" value="The Copper Fork" />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="restaurant-phone" class="form-label">Contact Number</label>
+                  <input type="tel" id="restaurant-phone" class="input" value="+92 21 3456 7890" />
+                </div>
+                <div class="form-group">
+                  <label for="restaurant-email" class="form-label">Support Email</label>
+                  <input type="email" id="restaurant-email" class="input" value="hello@copperfork.com" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="restaurant-address" class="form-label">Restaurant Address</label>
+                <textarea id="restaurant-address" class="textarea">14 Seaview Boulevard, Clifton, Karachi, Pakistan</textarea>
+              </div>
+            </div>
+
+            <!-- Appearance -->
+            <div class="card card-padded" id="appearance" style="margin-bottom: var(--space-6);">
+              <h2 class="section-heading" style="margin-bottom: var(--space-5);">Appearance</h2>
+
+              <div class="settings-row">
+                <div class="settings-row-text">
+                  <h4>Dark Theme</h4>
+                  <p>Switch the dashboard to a dark colour scheme. Display only — no functional theme engine is wired up.</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" aria-label="Toggle dark theme" />
+                  <span class="switch-track"></span>
+                </label>
+              </div>
+
+              <div class="settings-row">
+                <div class="settings-row-text">
+                  <h4>Accent Colour</h4>
+                  <p>Choose the primary brand colour used across buttons and highlights</p>
+                </div>
+                <div class="theme-swatch-group">
+                  <span class="theme-swatch is-selected" style="background: #ff6b35;" role="button" aria-label="Orange accent" tabindex="0"></span>
+                  <span class="theme-swatch" style="background: #1e8e5a;" role="button" aria-label="Green accent" tabindex="0"></span>
+                  <span class="theme-swatch" style="background: #2f7fe0;" role="button" aria-label="Blue accent" tabindex="0"></span>
+                  <span class="theme-swatch" style="background: #8452d5;" role="button" aria-label="Purple accent" tabindex="0"></span>
+                </div>
+              </div>
+
+              <div class="settings-row">
+                <div class="settings-row-text">
+                  <h4>Compact Sidebar</h4>
+                  <p>Collapse the sidebar to icons only to fit more content on screen</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" aria-label="Toggle compact sidebar" />
+                  <span class="switch-track"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Regional -->
+            <div class="card card-padded" id="regional" style="margin-bottom: var(--space-6);">
+              <h2 class="section-heading" style="margin-bottom: var(--space-5);">Regional</h2>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="currency" class="form-label">Currency</label>
+                  <select id="currency" class="select">
+                    <option value="USD" selected>USD — US Dollar ($)</option>
+                    <option value="PKR">PKR — Pakistani Rupee (₨)</option>
+                    <option value="GBP">GBP — British Pound (£)</option>
+                    <option value="EUR">EUR — Euro (€)</option>
+                    <option value="AED">AED — UAE Dirham (د.إ)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="timezone" class="form-label">Time Zone</label>
+                  <select id="timezone" class="select">
+                    <option selected>(GMT+5:00) Karachi</option>
+                    <option>(GMT+0:00) London</option>
+                    <option>(GMT-5:00) New York</option>
+                    <option>(GMT+4:00) Dubai</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="language" class="form-label">Display Language</label>
+                <select id="language" class="select">
+                  <option selected>English</option>
+                  <option>Urdu</option>
+                  <option>Arabic</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="card card-padded" id="notifications" style="margin-bottom: var(--space-6);">
+              <h2 class="section-heading" style="margin-bottom: var(--space-5);">Notifications</h2>
+
+              <div class="settings-row">
+                <div class="settings-row-text">
+                  <h4>New Order Alerts</h4>
+                  <p>Get notified instantly when a new order is placed</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked aria-label="Toggle new order alerts" />
+                  <span class="switch-track"></span>
+                </label>
+              </div>
+
+              <div class="settings-row">
+                <div class="settings-row-text">
+                  <h4>Low Stock Warnings</h4>
+                  <p>Receive a warning when a menu item is running low on stock</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked aria-label="Toggle low stock warnings" />
+                  <span class="switch-track"></span>
+                </label>
+              </div>
+
+              <div class="settings-row">
+                <div class="settings-row-text">
+                  <h4>Weekly Performance Summary</h4>
+                  <p>A digest of orders, revenue and top items sent every Monday</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" aria-label="Toggle weekly performance summary" />
+                  <span class="switch-track"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Security -->
+            <div class="card card-padded" id="security">
+              <h2 class="section-heading" style="margin-bottom: var(--space-5);">Security</h2>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="new-password" class="form-label">New Password</label>
+                  <input type="password" id="new-password" class="input" placeholder="••••••••" />
+                </div>
+                <div class="form-group">
+                  <label for="confirm-password" class="form-label">Confirm Password</label>
+                  <input type="password" id="confirm-password" class="input" placeholder="••••••••" />
+                </div>
+              </div>
+
+              <div class="settings-row">
+                <div class="settings-row-text">
+                  <h4>Two-Factor Authentication</h4>
+                  <p>Add an extra layer of security to your account at login</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" aria-label="Toggle two-factor authentication" />
+                  <span class="switch-track"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="settings-footer-bar">
+              <button type="button" class="btn btn-ghost">Discard Changes</button>
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+            </div>
+          </div>
+
+        </form>
+
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>
