@@ -9,6 +9,8 @@ const closeModal = document.querySelector(".modal-close");
 const cancelBtn = document.querySelector(".btn-cancel");
 const deleteBtn = document.querySelector(".btn-delete");
 const deleteItemName = document.querySelector(".delete-item-name");
+const toast = document.querySelector(".toast")
+const toastDanger = document.querySelector(".toast-danger")
 
 const subtotalElement = document.querySelector("#subtotal");
 const deliveryElement = document.querySelector("#delivery-fee");
@@ -18,8 +20,6 @@ const grandTotalElement = document.querySelector("#grand-total");
 
 const promoInput = document.querySelector("#promo-code");
 const promoBtn = document.querySelector(".promo-row .btn");
-const toast = document.querySelector(".toast")
-const toastDanger = document.querySelector(".toast-danger")
 
 const promoCodes = {
   SAVE10: {
@@ -44,8 +44,10 @@ let promoState = {
   discount: 0,
   applied: false
 };
+
 toastDanger.style.display = "none";
 toast.style.display = "none";
+
 function showProducts() {
   let cartCard = "";
   for (const food of cart) {
@@ -90,6 +92,33 @@ function showProducts() {
   cartItems.innerHTML = cartCard;
 }
 
+function orderSummary() {
+  subtotal = 0;
+
+  for (const food of cart) {
+    subtotal += food.price * food.quantity;
+  }
+
+  if (promoState.applied) {
+    const promo = promoCodes[promoState.code];
+    if (promo.type === "percentage") {
+      promoState.discount = subtotal * (promo.value / 100);
+    }
+    if (promo.type === "fixed") {
+      promoState.discount = promo.value;
+    }
+  }
+  const deliveryFee = subtotal > 0 ? 200 : 0;
+  const tax = subtotal * 0.08;
+  const grandTotal = subtotal + deliveryFee + tax - promoState.discount;
+
+  subtotalElement.textContent = `RS: ${subtotal}`;
+  deliveryElement.textContent = `RS: ${deliveryFee}`;
+  taxElement.textContent = `RS: ${tax.toFixed(2)}`;
+  discountElement.textContent = `−RS: ${promoState.discount}`;
+  grandTotalElement.textContent = `RS: ${grandTotal.toFixed(2)}`;
+}
+
 function renderCart() {
   if (cart.length > 0) {
     cartCount.textContent = `${cart.length} Items in Cart`;
@@ -117,33 +146,6 @@ function renderCart() {
     </div>
     `;
   }
-}
-
-function orderSummary() {
-  subtotal = 0;
-
-  for (const food of cart) {
-    subtotal += food.price * food.quantity;
-  }
-
-  if (promoState.applied) {
-    const promo = promoCodes[promoState.code];
-    if (promo.type === "percentage") {
-      promoState.discount = subtotal * (promo.value / 100);
-    }
-    if (promo.type === "fixed") {
-      promoState.discount = promo.value;
-    }
-  }
-  const deliveryFee = subtotal > 0 ? 200 : 0;
-  const tax = subtotal * 0.08;
-  const grandTotal = subtotal + deliveryFee + tax - promoState.discount;
-
-  subtotalElement.textContent = `RS: ${subtotal}`;
-  deliveryElement.textContent = `RS: ${deliveryFee}`;
-  taxElement.textContent = `RS: ${tax.toFixed(2)}`;
-  discountElement.textContent = `−RS: ${promoState.discount}`;
-  grandTotalElement.textContent = `RS: ${grandTotal.toFixed(2)}`;
 }
 
 function notificationModule(notification){
