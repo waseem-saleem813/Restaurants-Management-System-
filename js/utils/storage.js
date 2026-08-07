@@ -3,6 +3,6 @@ export function saveData(key, data) {
 }
 
 
-export function getData(key) {
-    return JSON.parse(localStorage.getItem(key)) || [];
+export function getData(key, defaultValue) {
+    return JSON.parse(localStorage.getItem(key)) || defaultValue;
 }

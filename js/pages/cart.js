@@ -1,5 +1,6 @@
 import { cart } from "../data/cartdata.js";
-import { saveData } from "../utils/storage.js";
+import { saveData, getData } from "../utils/storage.js";
+import { promoCodes } from "../data/promocodes.js";
 
 const cartItems = document.querySelector("#cart-items");
 let cartCount = document.querySelector("#cart-count");
@@ -9,8 +10,8 @@ const closeModal = document.querySelector(".modal-close");
 const cancelBtn = document.querySelector(".btn-cancel");
 const deleteBtn = document.querySelector(".btn-delete");
 const deleteItemName = document.querySelector(".delete-item-name");
-const toast = document.querySelector(".toast")
-const toastDanger = document.querySelector(".toast-danger")
+const toast = document.querySelector(".toast");
+const toastDanger = document.querySelector(".toast-danger");
 
 const subtotalElement = document.querySelector("#subtotal");
 const deliveryElement = document.querySelector("#delivery-fee");
@@ -21,29 +22,17 @@ const grandTotalElement = document.querySelector("#grand-total");
 const promoInput = document.querySelector("#promo-code");
 const promoBtn = document.querySelector(".promo-row .btn");
 
-const promoCodes = {
-  SAVE10: {
-    type: "percentage",
-    value: 10
-  },
-  SAVE20: {
-    type: "percentage",
-    value: 20
-  },
-  WELCOME500: {
-    type: "fixed",
-    value: 500
-  }
-};
+
 
 let deleteItemId = null;
 let subtotal = 0;
 
-let promoState = {
+const promoState = getData("promoState", {
   code: "",
   discount: 0,
   applied: false
-};
+}
+)
 
 toastDanger.style.display = "none";
 toast.style.display = "none";
@@ -105,7 +94,7 @@ function orderSummary() {
       promoState.discount = subtotal * (promo.value / 100);
     }
     if (promo.type === "fixed") {
-      promoState.discount = promo.value;
+      promoState.discount = Math.min(promo.value, subtotal);
     }
   }
   const deliveryFee = subtotal > 0 ? 200 : 0;
@@ -122,6 +111,7 @@ function orderSummary() {
 function renderCart() {
   if (cart.length > 0) {
     cartCount.textContent = `${cart.length} Items in Cart`;
+    promoInput.value = promoState.code
     showProducts();
     orderSummary();
   } else {
@@ -148,7 +138,7 @@ function renderCart() {
   }
 }
 
-function notificationModule(notification){
+function notificationModule(notification) {
   setTimeout(() => {
     notification.classList.toggle("toast-out")
   }, 5000)
@@ -179,26 +169,11 @@ cartItems.addEventListener("click", (event) => {
     }
   }
   if (event.target.closest(".cart-item-remove")) {
-    const button =
-      event.target.closest(".cart-item-remove");
-
-
-    deleteItemId =
-      Number(button.dataset.id);
-
-
-
-    const item =
-      cart.find(food => food.id === deleteItemId);
-
-
-
+    const button = event.target.closest(".cart-item-remove");
+    deleteItemId = Number(button.dataset.id);
+    const item = cart.find(food => food.id === deleteItemId);
     if (!item) return;
-
-
-
-    deleteItemName.textContent =
-      item.name;
+    deleteItemName.textContent = item.name;
     modalOverlay.style.display = "flex";
   }
 });
@@ -235,18 +210,13 @@ promoBtn.addEventListener("click", () => {
     promoState.discount = 0;
     promoState.applied = false;
     alert("Invalid Promo Code");
+    saveData("promoState", promoState);
     orderSummary();
     return;
   }
   promoState.code = code;
   promoState.applied = true;
-  if (promo.type === "percentage") {
-    promoState.discount = subtotal * (promo.value / 100);
-  }
-  if (promo.type === "fixed") {
-    promoState.discount =
-      promo.value;
-  }
   alert(`${code} Applied Successfully`);
+  saveData("promoState", promoState);
   orderSummary();
 });
