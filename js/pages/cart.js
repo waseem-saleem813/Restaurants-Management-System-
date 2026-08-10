@@ -42,10 +42,6 @@ const promoState = getData("promoState", {
 
 // Helper Function
 
-// function formatCurrency(amount) {
-//   return `Rs: ${amount.toFixed(2)}`;
-// }
-
 function saveCart() {
   saveData("cart", cart);
 }
@@ -65,50 +61,6 @@ function resetPromo() {
 
   savePromoState();
 }
-
-// Calculation
-
-// function calculatetotal() {
-//   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-// }
-
-// function calculateDiscount(subtotal) {
-//   if (!promoState.applied) {
-//     return 0;
-//   }
-
-//   const promo = promoCodes[promoState.code];
-
-//   if (!promo) {
-//     return 0;
-//   }
-
-//   if (promo.type === "percentage") {
-//     return subtotal * (promo.value / 100);
-//   }
-
-//   if (promo.type === "fixed") {
-//     return Math.min(promo.value, subtotal);
-//   }
-
-//   return 0;
-// }
-
-// function calculateOrderSummary() {
-//   const subtotal = calculatetotal();
-//   const discount = calculateDiscount(subtotal);
-//   const deliveryFee = subtotal > 0 ? delivery_Fee : 0;
-//   const tax = subtotal * tax_Rate;
-//   const grandTotal = subtotal + deliveryFee + tax - discount;
-
-//   return {
-//     subtotal,
-//     discount,
-//     deliveryFee,
-//     tax,
-//     grandTotal,
-//   };
-// }
 
 // // Rendering
 
