@@ -1,21 +1,32 @@
+import { cart } from "../data/cartdata.js";
+import { saveData, getData } from "../utils/storage.js";
+import { promoCodes } from "../data/promocodes.js";
+
+
+const promoState = getData("promoState", {
+  code: "",
+  discount: 0,
+  applied: false,
+});
 
 
 const delivery_Fee = 200;
 const tax_Rate = 0.08;
 
+
 // Format formatCurrency
 
-function formatCurrency(amount) {
+export function formatCurrency(amount) {
   return `Rs: ${amount.toFixed(2)}`;
 }
 
 // calculatetotal
-function calculatetotal(cart) {
+export function calculatetotal() {
   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
 }
 
 // calculateDiscount
-function calculateDiscount(subtotal) {
+export function calculateDiscount(subtotal) {
   if (!promoState.applied) {
     return 0;
   }
@@ -39,8 +50,8 @@ function calculateDiscount(subtotal) {
 
 // calculateOrderSummary
 
-function calculateOrderSummary(cart) {
-  const subtotal = calculatetotal(cart);
+export  function calculateOrderSummary() {
+  const subtotal = calculatetotal();
   const discount = calculateDiscount(subtotal);
   const deliveryFee = subtotal > 0 ? delivery_Fee : 0;
   const tax = subtotal * tax_Rate;

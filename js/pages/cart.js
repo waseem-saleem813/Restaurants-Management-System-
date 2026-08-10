@@ -1,9 +1,10 @@
 import { cart } from "../data/cartdata.js";
 import { saveData, getData } from "../utils/storage.js";
 import { promoCodes } from "../data/promocodes.js";
+import { formatCurrency, calculatetotal, calculateDiscount, calculateOrderSummary } from "../utils/helpers.js"
 
-const delivery_Fee = 200;
-const tax_Rate = 0.08;
+// const delivery_Fee = 200;
+// const tax_Rate = 0.08;
 const toast_Duration = 5000;
 const toast_Out_Duration = 5400;
 
@@ -32,7 +33,7 @@ const elements = {
 };
 
 let deleteItemId = null;
-let subtotal = 0;
+// let subtotal = 0;
 
 const promoState = getData("promoState", {
   code: "",
@@ -42,9 +43,9 @@ const promoState = getData("promoState", {
 
 // Helper Function
 
-function formatCurrency(amount) {
-  return `Rs: ${amount.toFixed(2)}`;
-}
+// function formatCurrency(amount) {
+//   return `Rs: ${amount.toFixed(2)}`;
+// }
 
 function saveCart() {
   saveData("cart", cart);
@@ -68,49 +69,49 @@ function resetPromo() {
 
 // Calculation
 
-function calculatetotal() {
-  return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-}
+// function calculatetotal() {
+//   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+// }
 
-function calculateDiscount(subtotal) {
-  if (!promoState.applied) {
-    return 0;
-  }
+// function calculateDiscount(subtotal) {
+//   if (!promoState.applied) {
+//     return 0;
+//   }
 
-  const promo = promoCodes[promoState.code];
+//   const promo = promoCodes[promoState.code];
 
-  if (!promo) {
-    return 0;
-  }
+//   if (!promo) {
+//     return 0;
+//   }
 
-  if (promo.type === "percentage") {
-    return subtotal * (promo.value / 100);
-  }
+//   if (promo.type === "percentage") {
+//     return subtotal * (promo.value / 100);
+//   }
 
-  if (promo.type === "fixed") {
-    return Math.min(promo.value, subtotal);
-  }
+//   if (promo.type === "fixed") {
+//     return Math.min(promo.value, subtotal);
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 
-function calculateOrderSummary() {
-  const subtotal = calculatetotal();
-  const discount = calculateDiscount(subtotal);
-  const deliveryFee = subtotal > 0 ? delivery_Fee : 0;
-  const tax = subtotal * tax_Rate;
-  const grandTotal = subtotal + deliveryFee + tax - discount;
+// function calculateOrderSummary() {
+//   const subtotal = calculatetotal();
+//   const discount = calculateDiscount(subtotal);
+//   const deliveryFee = subtotal > 0 ? delivery_Fee : 0;
+//   const tax = subtotal * tax_Rate;
+//   const grandTotal = subtotal + deliveryFee + tax - discount;
 
-  return {
-    subtotal,
-    discount,
-    deliveryFee,
-    tax,
-    grandTotal,
-  };
-}
+//   return {
+//     subtotal,
+//     discount,
+//     deliveryFee,
+//     tax,
+//     grandTotal,
+//   };
+// }
 
-// Rendering
+// // Rendering
 
 function renderCartItems() {
   if (cart.length === 0) {
