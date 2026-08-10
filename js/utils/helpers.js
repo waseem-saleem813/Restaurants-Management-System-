@@ -1,15 +1,3 @@
-import { cart } from "../data/cartdata.js";
-import { saveData, getData } from "../utils/storage.js";
-import { promoCodes } from "../data/promocodes.js";
-
-
-const promoState = getData("promoState", {
-  code: "",
-  discount: 0,
-  applied: false,
-});
-
-
 const delivery_Fee = 200;
 const tax_Rate = 0.08;
 
@@ -21,12 +9,12 @@ export function formatCurrency(amount) {
 }
 
 // calculatetotal
-export function calculatetotal() {
+export function calculatetotal(cart) {
   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
 }
 
 // calculateDiscount
-export function calculateDiscount(subtotal) {
+export function calculateDiscount(subtotal, promoState, promoCodes) {
   if (!promoState.applied) {
     return 0;
   }
@@ -50,9 +38,9 @@ export function calculateDiscount(subtotal) {
 
 // calculateOrderSummary
 
-export  function calculateOrderSummary() {
-  const subtotal = calculatetotal();
-  const discount = calculateDiscount(subtotal);
+export  function calculateOrderSummary(cart, promoState, promoCodes) {
+  const subtotal = calculatetotal(cart);
+  const discount = calculateDiscount(subtotal, promoState, promoCodes);
   const deliveryFee = subtotal > 0 ? delivery_Fee : 0;
   const tax = subtotal * tax_Rate;
   const grandTotal = subtotal + deliveryFee + tax - discount;

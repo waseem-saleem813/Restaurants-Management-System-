@@ -33,7 +33,6 @@ const elements = {
 };
 
 let deleteItemId = null;
-// let subtotal = 0;
 
 const promoState = getData("promoState", {
   code: "",
@@ -166,7 +165,7 @@ function renderCartItems() {
 
 function renderOrderSummery() {
   const { subtotal, discount, deliveryFee, tax, grandTotal } =
-    calculateOrderSummary();
+    calculateOrderSummary(cart, promoState, promoCodes);
 
   elements.subtotalElement.textContent = formatCurrency(subtotal);
   elements.deliveryElement.textContent = formatCurrency(deliveryFee);
@@ -288,13 +287,13 @@ function applyPromoCode() {
 
   promoState.code = code;
   promoState.applied = true;
-  promoState.discount = calculateDiscount(calculatetotal());
+  promoState.discount = calculateDiscount(calculatetotal(cart), promoState, promoCodes);
 
   savePromoState();
 
   alert(`${code} Applied Successfully`);
 
-  renderOrderSummary();
+  renderOrderSummery();
 }
 
 // Event Listener
