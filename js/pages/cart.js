@@ -2,27 +2,35 @@ import { cart } from "../data/cartdata.js";
 import { saveData, getData } from "../utils/storage.js";
 import { promoCodes } from "../data/promocodes.js";
 
-const cartItems = document.querySelector("#cart-items");
-let cartCount = document.querySelector("#cart-count");
+const delivery_Fee = 200;
+const tax_Rate = 0.08;
+const toast_Duration = 5000;
+const toast_Out_Duration = 5400;
 
-const modalOverlay = document.querySelector(".modal-overlay");
-const closeModal = document.querySelector(".modal-close");
-const cancelBtn = document.querySelector(".btn-cancel");
-const deleteBtn = document.querySelector(".btn-delete");
-const deleteItemName = document.querySelector(".delete-item-name");
-const toast = document.querySelector(".toast");
-const toastDanger = document.querySelector(".toast-danger");
+const elements = {
+  cartItems: document.querySelector("#cart-items"),
+  cartCount: document.querySelector("#cart-count"),
+  modalOverlay: document.querySelector(".modal-overlay"),
+  closeModal: document.querySelector(".modal-close"),
+  cancelBtn: document.querySelector(".btn-cancel"),
+  deleteBtn: document.querySelector(".btn-delete"),
+  deleteItemName: document.querySelector(".delete-item-name"),
 
-const subtotalElement = document.querySelector("#subtotal");
-const deliveryElement = document.querySelector("#delivery-fee");
-const taxElement = document.querySelector("#tax");
-const discountElement = document.querySelector("#discount");
-const grandTotalElement = document.querySelector("#grand-total");
+  toast: document.querySelector(".toast"),
+  toastDanger: document.querySelector(".toast-danger"),
 
-const promoInput = document.querySelector("#promo-code");
-const promoBtn = document.querySelector(".promo-row .btn");
+  subtotalElement: document.querySelector("#subtotal"),
+  deliveryElement: document.querySelector("#delivery-fee"),
+  taxElement: document.querySelector("#tax"),
+  discountElement: document.querySelector("#discount"),
+  grandTotalElement: document.querySelector("#grand-total"),
 
+  promoInput: document.querySelector("#promo-code"),
+  promoBtn: document.querySelector(".promo-row .btn"),
 
+   checkoutLink: document.querySelector(".checkoutProcess")
+
+};
 
 let deleteItemId = null;
 let subtotal = 0;
@@ -30,193 +38,306 @@ let subtotal = 0;
 const promoState = getData("promoState", {
   code: "",
   discount: 0,
-  applied: false
-}
-)
-
-toastDanger.style.display = "none";
-toast.style.display = "none";
-
-function showProducts() {
-  let cartCard = "";
-  for (const food of cart) {
-    cartCard += `
-    <div class="cart-item">
-      <div class="cart-item-media">
-        <img src="${food.image}" alt="${food.name}" />
-      </div>
-      <div>
-        <div class="cart-item-name">${food.name}</div>
-        <div class="cart-item-variant">${food.description}</div>
-        <div class="cart-item-unit-price numeric">
-          RS:${food.price}
-        </div>
-      </div>
-      <div class="qty-control">
-        <button 
-        class="decrease" 
-        data-id="${food.id}">
-        −
-        </button>
-        <span class="qty-value">
-        ${food.quantity}
-        </span>
-        <button 
-        class="increase" 
-        data-id="${food.id}">
-        +
-        </button>
-      </div>
-      <div class="cart-item-total">
-        ${food.quantity * food.price}
-      </div>
-      <button 
-      class="cart-item-remove"
-      data-id="${food.id}">
-        <i class="fa-solid fa-trash"></i>
-      </button>
-    </div>
-    `;
-  }
-  cartItems.innerHTML = cartCard;
-}
-
-function orderSummary() {
-  subtotal = 0;
-
-  for (const food of cart) {
-    subtotal += food.price * food.quantity;
-  }
-
-  if (promoState.applied) {
-    const promo = promoCodes[promoState.code];
-    if (promo.type === "percentage") {
-      promoState.discount = subtotal * (promo.value / 100);
-    }
-    if (promo.type === "fixed") {
-      promoState.discount = Math.min(promo.value, subtotal);
-    }
-  }
-  const deliveryFee = subtotal > 0 ? 200 : 0;
-  const tax = subtotal * 0.08;
-  const grandTotal = subtotal + deliveryFee + tax - promoState.discount;
-
-  subtotalElement.textContent = `RS: ${subtotal}`;
-  deliveryElement.textContent = `RS: ${deliveryFee}`;
-  taxElement.textContent = `RS: ${tax.toFixed(2)}`;
-  discountElement.textContent = `−RS: ${promoState.discount}`;
-  grandTotalElement.textContent = `RS: ${grandTotal.toFixed(2)}`;
-}
-
-function renderCart() {
-  if (cart.length > 0) {
-    cartCount.textContent = `${cart.length} Items in Cart`;
-    promoInput.value = promoState.code
-    showProducts();
-    orderSummary();
-  } else {
-    cartCount.textContent = "0 Items in Cart";
-    subtotalElement.textContent = "RS: 0";
-    deliveryElement.textContent = "RS: 0";
-    taxElement.textContent = "RS: 0";
-    discountElement.textContent = "RS: 0";
-    grandTotalElement.textContent = "RS: 0";
-    cartItems.innerHTML = `
-    <div class="empty-state">
-    <div class="empty-state-icon">
-    <i class="fa-solid fa-cart-shopping"></i>
-    </div>
-    <h3>Your cart is empty</h3>
-    <p>
-    Looks like you haven't added anything yet.
-    </p>
-    <a href="menu.html" class="btn btn-primary">
-    Browse Menu
-    </a>
-    </div>
-    `;
-  }
-}
-
-function notificationModule(notification) {
-  setTimeout(() => {
-    notification.classList.toggle("toast-out")
-  }, 5000)
-  setTimeout(() => {
-    notification.style.display = "none";
-  }, 5400)
-}
-
-renderCart();
-
-cartItems.addEventListener("click", (event) => {
-  if (event.target.matches(".increase")) {
-    const id = Number(event.target.dataset.id);
-    const item = cart.find(food => food.id === id);
-    if (!item) return;
-    item.quantity++;
-    saveData("cart", cart);
-    renderCart();
-  }
-  if (event.target.matches(".decrease")) {
-    const id = Number(event.target.dataset.id);
-    const item = cart.find(food => food.id === id);
-    if (!item) return;
-    if (item.quantity > 1) {
-      item.quantity--;
-      saveData("cart", cart);
-      renderCart();
-    }
-  }
-  if (event.target.closest(".cart-item-remove")) {
-    const button = event.target.closest(".cart-item-remove");
-    deleteItemId = Number(button.dataset.id);
-    const item = cart.find(food => food.id === deleteItemId);
-    if (!item) return;
-    deleteItemName.textContent = item.name;
-    modalOverlay.style.display = "flex";
-  }
+  applied: false,
 });
 
-closeModal.addEventListener("click", () => {
-  modalOverlay.style.display = "none";
-});
+// Helper Function
 
-cancelBtn.addEventListener("click", () => {
-  modalOverlay.style.display = "none";
-  toastDanger.style.display = "flex"
-  notificationModule(toastDanger)
-});
+function formatCurrency(amount) {
+  return `Rs: ${amount.toFixed(2)}`;
+}
 
+function saveCart() {
+  saveData("cart", cart);
+}
 
-deleteBtn.addEventListener("click", () => {
-  const index = cart.findIndex(food => food.id === deleteItemId);
-  if (index !== -1) {
-    cart.splice(index, 1);
+function savePromoState() {
+  saveData("promoState", promoState);
+}
 
-    saveData("cart", cart);
+function findCartItem(id) {
+  return cart.find((item) => item.id === id);
+}
+
+function resetPromo() {
+  promoState.code = "";
+  promoState.discount = 0;
+  promoState.applied = false;
+
+  savePromoState();
+}
+
+// Calculation
+
+function calculatetotal() {
+  return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+}
+
+function calculateDiscount(subtotal) {
+  if (!promoState.applied) {
+    return 0;
   }
-  toast.style.display = "flex";
-  modalOverlay.style.display = "none";
-  renderCart();
-  notificationModule(toast)
-});
 
-promoBtn.addEventListener("click", () => {
-  const code = promoInput.value.trim().toUpperCase();
-  const promo = promoCodes[code];
+  const promo = promoCodes[promoState.code];
+
   if (!promo) {
-    promoState.code = "";
-    promoState.discount = 0;
-    promoState.applied = false;
-    alert("Invalid Promo Code");
-    saveData("promoState", promoState);
-    orderSummary();
+    return 0;
+  }
+
+  if (promo.type === "percentage") {
+    return subtotal * (promo.value / 100);
+  }
+
+  if (promo.type === "fixed") {
+    return Math.min(promo.value, subtotal);
+  }
+
+  return 0;
+}
+
+function calculateOrderSummary() {
+  const subtotal = calculatetotal();
+  const discount = calculateDiscount(subtotal);
+  const deliveryFee = subtotal > 0 ? delivery_Fee : 0;
+  const tax = subtotal * tax_Rate;
+  const grandTotal = subtotal + deliveryFee + tax - discount;
+
+  return {
+    subtotal,
+    discount,
+    deliveryFee,
+    tax,
+    grandTotal,
+  };
+}
+
+// Rendering
+
+function renderCartItems() {
+  if (cart.length === 0) {
+    elements.cartItems.innerHTML = ` <div class="empty-state"> 
+    <div class="empty-state-icon"> 
+    <i class="fa-solid fa-cart-shopping"></i> 
+    </div> 
+    <h3>Your cart is empty</h3> 
+    <p> Looks like you haven't added anything yet. </p> 
+    <a href="menu.html" class="btn btn-primary"> Browse Menu </a> 
+    </div> `;
     return;
   }
+
+  elements.cartItems.innerHTML = cart
+    .map(
+      (item) => ` <div class="cart-item"> 
+    <div class="cart-item-media"> <img src="${item.image}" alt="${item.name}" /> 
+    </div> 
+    <div> 
+    <div class="cart-item-name"> 
+    ${item.name} 
+    </div> 
+    <div class="cart-item-variant"> 
+    ${item.description} 
+    </div> 
+    <div class="cart-item-unit-price numeric"> R
+    S: ${item.price} 
+    </div> 
+    </div> 
+    <div class="qty-control"> 
+    <button class="decrease" data-id="${item.id}" type="button" > 
+    − 
+    </button> 
+    <span class="qty-value"> 
+    ${item.quantity} 
+    </span> 
+    <button class="increase" data-id="${item.id}" type="button" > 
+    + 
+    </button> 
+    </div> 
+    <div class="cart-item-total"> 
+    ${item.quantity * item.price} 
+    </div>
+   <button class="cart-item-remove" data-id="${item.id}" type="button" > 
+   <i class="fa-solid fa-trash"></i> 
+   </button> 
+   </div> `,
+    )
+    .join("");
+}
+
+function renderOrderSummery() {
+  const { subtotal, discount, deliveryFee, tax, grandTotal } =
+    calculateOrderSummary();
+
+  elements.subtotalElement.textContent = formatCurrency(subtotal);
+  elements.deliveryElement.textContent = formatCurrency(deliveryFee);
+  elements.taxElement.textContent = formatCurrency(tax);
+  elements.discountElement.textContent = `-${formatCurrency(discount)}`;
+  elements.grandTotalElement.textContent = formatCurrency(grandTotal);
+}
+
+function renderCartCount() {
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
+  elements.cartCount.textContent = `${totalItems} ${totalItems === 1 ? "Item" : "Items"} in Cart`;
+}
+
+function render() {
+  renderCartItems();
+  renderCartCount();
+  renderOrderSummery();
+
+  elements.promoInput.value = promoState.code;
+}
+
+// Notification
+
+function showNotification(notification) {
+  notification.style.display = "flex";
+  notification.classList.remove("toast-out");
+
+  setTimeout(() => {
+    notification.classList.add("toast-out");
+  }, toast_Duration);
+
+  setTimeout(() => {
+    notification.style.display = "none";
+  }, toast_Out_Duration);
+}
+
+// modals
+
+function openDeleteModal(item) {
+  deleteItemId = item.id;
+  elements.deleteItemName.textContent = item.name;
+  elements.modalOverlay.style.display = "flex";
+}
+
+function closeDeleteModal() {
+  deleteItemId = null;
+  elements.modalOverlay.style.display = "none";
+}
+
+// Cart Action
+
+function increaseQuantity(id) {
+  const item = findCartItem(id);
+
+  if (!item) return;
+
+  item.quantity += 1;
+
+  saveCart();
+  render();
+}
+
+function decreaseQuantity(id) {
+  const item = findCartItem(id);
+
+  if (!item || item.quantity <= 1) return;
+
+  item.quantity -= 1;
+
+  saveCart();
+  render();
+}
+
+function removeItem() {
+  if (deleteItemId === null) return;
+
+  const index = cart.findIndex((item) => item.id === deleteItemId);
+
+  if (index === -1) return;
+
+  cart.splice(index, 1);
+
+  saveCart();
+
+  if (cart.length === 0) {
+    resetPromo();
+  }
+
+  closeDeleteModal();
+  render();
+
+  showNotification(elements.toast);
+}
+
+function checkoutProcess() {
+  if (cart.length === 0) {
+    alert("cart is empty");
+  } else {
+    window.location.href = "orders.html";
+  }
+}
+
+// Promo Codes
+
+function applyPromoCode() {
+  const code = elements.promoInput.value.trim().toUpperCase();
+  const promo = promoCodes[code];
+
+  if (!promo) {
+    resetPromo();
+
+    alert("Invalied Promo Code");
+
+    renderOrderSummery();
+
+    return;
+  }
+
   promoState.code = code;
   promoState.applied = true;
+  promoState.discount = calculateDiscount(calculatetotal());
+
+  savePromoState();
+
   alert(`${code} Applied Successfully`);
-  saveData("promoState", promoState);
-  orderSummary();
+
+  renderOrderSummary();
+}
+
+// Event Listener
+
+elements.cartItems.addEventListener("click", (event) => {
+  const increaseButton = event.target.closest(".increase");
+  const decreaseButton = event.target.closest(".decrease");
+  const removeButton = event.target.closest(".cart-item-remove");
+  if (increaseButton) {
+    increaseQuantity(Number(increaseButton.dataset.id));
+    return;
+  }
+
+  if (decreaseButton) {
+    decreaseQuantity(Number(decreaseButton.dataset.id));
+    return;
+  }
+
+  if (removeButton) {
+    const item = findCartItem(Number(removeButton.dataset.id));
+    if (item) {
+      openDeleteModal(item);
+    }
+  }
 });
+
+elements.closeModal.addEventListener("click", closeDeleteModal);
+
+elements.cancelBtn.addEventListener("click", () => {
+  closeDeleteModal();
+
+  showNotification(elements.toastDanger);
+});
+
+elements.deleteBtn.addEventListener("click", removeItem);
+
+elements.promoBtn.addEventListener("click", applyPromoCode);
+
+elements.checkoutLink.addEventListener("click", checkoutProcess);
+
+// Initialization
+
+elements.toast.style.display = "none";
+elements.toastDanger.style.display = "none";
+
+render();
