@@ -28,8 +28,7 @@ const elements = {
   promoInput: document.querySelector("#promo-code"),
   promoBtn: document.querySelector(".promo-row .btn"),
 
-   checkoutLink: document.querySelector(".checkoutProcess")
-
+  checkoutLink: document.querySelector(".checkoutProcess"),
 };
 
 let deleteItemId = null;
