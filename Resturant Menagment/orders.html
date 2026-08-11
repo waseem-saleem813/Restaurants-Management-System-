@@ -1,220 +1,379 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout · Tabletop Restaurant Manager</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout · Tabletop Restaurant Manager</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
-<body>
-
-  <div class="app-shell">
-
-    <!-- ============ SIDEBAR ============ -->
-    <aside class="sidebar" aria-label="Primary navigation">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div>
-        <div>
-          <div class="brand-name">Tabletop</div>
-          <div class="brand-tag">Restaurant Manager</div>
-        </div>
-      </div>
-
-      <nav class="sidebar-nav" aria-label="Main menu">
-        <span class="sidebar-section-label">Overview</span>
-        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i><span>Dashboard</span></a>
-        <a href="menu.html" class="sidebar-link"><i class="fa-solid fa-book-open"></i><span>Menu</span></a>
-        <a href="cart.html" class="sidebar-link"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a>
-        <a href="orders.html" class="sidebar-link is-active" aria-current="page"><i class="fa-solid fa-receipt"></i><span>Checkout</span></a>
-
-        <span class="sidebar-section-label" style="margin-top: 1rem;">Management</span>
-        <a href="admin.html" class="sidebar-link"><i class="fa-solid fa-user-shield"></i><span>Admin Panel</span></a>
-        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
-      </nav>
-
-      <div class="sidebar-footer">
-        <div class="sidebar-user">
-          <img src="https://i.pravatar.cc/150?img=12" alt="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- ============ SIDEBAR ============ -->
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
           <div>
-            <div class="sidebar-user-name">Amelia Cross</div>
-            <div class="sidebar-user-role">Restaurant Owner</div>
+            <div class="brand-name">Tabletop</div>
+            <div class="brand-tag">Restaurant Manager</div>
           </div>
         </div>
-      </div>
-    </aside>
 
-    <div class="main-col">
+        <nav class="sidebar-nav" aria-label="Main menu">
+          <span class="sidebar-section-label">Overview</span>
+          <a href="index.html" class="sidebar-link"
+            ><i class="fa-solid fa-grid-2"></i><span>Dashboard</span></a
+          >
+          <a href="menu.html" class="sidebar-link"
+            ><i class="fa-solid fa-book-open"></i><span>Menu</span></a
+          >
+          <a href="cart.html" class="sidebar-link"
+            ><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a
+          >
+          <a
+            href="orders.html"
+            class="sidebar-link is-active"
+            aria-current="page"
+            ><i class="fa-solid fa-receipt"></i><span>Checkout</span></a
+          >
 
-      <header class="topbar">
-        <div class="topbar-search">
-          <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            <label for="global-search" class="visually-hidden">Search</label>
-            <input type="search" id="global-search" placeholder="Search orders, menu items, customers…" />
-          </div>
-        </div>
-        <div class="topbar-actions">
-          <button class="icon-btn" aria-label="View notifications"><i class="fa-regular fa-bell"></i><span class="dot" aria-hidden="true"></span></button>
-          <button class="icon-btn" aria-label="View messages"><i class="fa-regular fa-envelope"></i></button>
-          <div class="topbar-user">
+          <span class="sidebar-section-label" style="margin-top: 1rem"
+            >Management</span
+          >
+          <a href="admin.html" class="sidebar-link"
+            ><i class="fa-solid fa-user-shield"></i><span>Admin Panel</span></a
+          >
+          <a href="settings.html" class="sidebar-link"
+            ><i class="fa-solid fa-gear"></i><span>Settings</span></a
+          >
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="sidebar-user">
             <img src="https://i.pravatar.cc/150?img=12" alt="" />
-            <div class="topbar-user-info">
-              <div class="topbar-user-name">Amelia Cross</div>
-              <div class="topbar-user-role">Owner · The Copper Fork</div>
+            <div>
+              <div class="sidebar-user-name">Amelia Cross</div>
+              <div class="sidebar-user-role">Restaurant Owner</div>
             </div>
           </div>
         </div>
-      </header>
+      </aside>
 
-      <main class="content">
-
-        <div class="content-header">
-          <div>
-            <h1 class="page-title">Checkout</h1>
-            <p class="page-subtitle">Confirm customer details and delivery information to place the order</p>
+      <div class="main-col">
+        <header class="topbar">
+          <div class="topbar-search">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <label for="global-search" class="visually-hidden">Search</label>
+              <input
+                type="search"
+                id="global-search"
+                placeholder="Search orders, menu items, customers…"
+              />
+            </div>
           </div>
-          <div class="content-header-actions">
-            <a href="cart.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Back to Cart</a>
+          <div class="topbar-actions">
+            <button class="icon-btn" aria-label="View notifications">
+              <i class="fa-regular fa-bell"></i
+              ><span class="dot" aria-hidden="true"></span>
+            </button>
+            <button class="icon-btn" aria-label="View messages">
+              <i class="fa-regular fa-envelope"></i>
+            </button>
+            <div class="topbar-user">
+              <img src="https://i.pravatar.cc/150?img=12" alt="" />
+              <div class="topbar-user-info">
+                <div class="topbar-user-name">Amelia Cross</div>
+                <div class="topbar-user-role">Owner · The Copper Fork</div>
+              </div>
+            </div>
           </div>
-        </div>
+        </header>
 
-        <form class="checkout-layout" aria-label="Checkout form">
+        <main class="content">
+          <div class="content-header">
+            <div>
+              <h1 class="page-title">Checkout</h1>
+              <p class="page-subtitle">
+                Confirm customer details and delivery information to place the
+                order
+              </p>
+            </div>
+            <div class="content-header-actions">
+              <a href="cart.html" class="btn btn-outline"
+                ><i class="fa-solid fa-arrow-left"></i> Back to Cart</a
+              >
+            </div>
+          </div>
 
-          <!-- Left column: customer details + delivery + payment -->
-          <div>
+          <form class="checkout-layout" aria-label="Checkout form">
+            <!-- Left column: customer details + delivery + payment -->
+            <div>
+              <!-- Customer details -->
+              <div class="card card-padded checkout-section">
+                <div class="checkout-section-title">
+                  <span class="checkout-step-num">1</span>
+                  <h2 class="section-heading">Customer Details</h2>
+                </div>
 
-            <!-- Customer details -->
-            <div class="card card-padded checkout-section">
-              <div class="checkout-section-title">
-                <span class="checkout-step-num">1</span>
-                <h2 class="section-heading">Customer Details</h2>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="cust-name" class="form-label">Full Name</label>
+                    <input
+                      type="text"
+                      id="cust-name"
+                      class="input"
+                      value="Daniel Reyes"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="cust-phone" class="form-label"
+                      >Phone Number</label
+                    >
+                    <input
+                      type="tel"
+                      id="cust-phone"
+                      class="input"
+                      value="+92 300 1234567"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="cust-email" class="form-label"
+                      >Email Address
+                      <span class="optional">(optional)</span></label
+                    >
+                    <input
+                      type="email"
+                      id="cust-email"
+                      class="input"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="cust-type" class="form-label">Order Type</label>
+                    <select id="cust-type" class="select">
+                      <option>Select</option>
+                      <option>Delivery</option>
+                      <option>Pickup</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="cust-name" class="form-label">Full Name</label>
-                  <input type="text" id="cust-name" class="input" value="Daniel Reyes" required />
+              <!-- Delivery address -->
+              <div class="card card-padded checkout-section">
+                <div class="checkout-section-title">
+                  <span class="checkout-step-num">2</span>
+                  <h2 class="section-heading">Delivery Address</h2>
                 </div>
-                <div class="form-group">  
-                  <label for="cust-phone" class="form-label">Phone Number</label>
-                  <input type="tel" id="cust-phone" class="input" value="+92 300 1234567" required />
+                <div>
+                  <label class="address-option">
+                    <input type="radio" name="address" checked />
+                    <div>
+                      <div class="address-option-title">
+                        Home <span class="badge badge-success">Default</span>
+                      </div>
+                      <div class="address-option-text">
+                        House 21, Street 4, DHA Phase 6, Karachi, Pakistan
+                      </div>
+                    </div>
+                  </label>
+                  <label class="address-option is-selected">
+                    <input type="radio" name="address" />
+                    <div>
+                      <div class="address-option-title">Office</div>
+                      <div class="address-option-text">
+                        Suite 302, Ocean Towers, Clifton, Karachi, Pakistan
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-outline btn-sm"
+                  style="margin-top: var(--space-2)"
+                >
+                  <i class="fa-solid fa-plus"></i> Add New Address
+                </button>
+              </div>
+
+              <!-- Payment summary -->
+              <div class="card card-padded checkout-section">
+                <div class="checkout-section-title">
+                  <span class="checkout-step-num">3</span>
+                  <h2 class="section-heading">Payment Method</h2>
+                </div>
+                <p class="form-hint" style="margin-bottom: var(--space-4)">
+                  Payment display only — no live payment processing is connected
+                  in this UI.
+                </p>
+
+                <label class="payment-method-option is-selected">
+                  <input type="radio" name="payment" checked />
+                  <i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery
+                </label>
+                <label class="payment-method-option">
+                  <input type="radio" name="payment" />
+                  <i class="fa-regular fa-credit-card"></i> Credit / Debit Card
+                </label>
+                <label class="payment-method-option">
+                  <input type="radio" name="payment" />
+                  <i class="fa-solid fa-wallet"></i> Digital Wallet
+                </label>
+              </div>
+            </div>
+
+            <!-- Right column: order summary ticket -->
+            <aside
+              class="ticket card-padded"
+              style="
+                --ticket-notch-top: 210px;
+                position: sticky;
+                top: calc(var(--topbar-height) + var(--space-6));
+              "
+            >
+              <h2 class="section-heading">Order Summary</h2>
+
+              <div style="margin: var(--space-5) 0" class="summeryItems"></div>
+
+              <hr class="ticket-tear" />
+
+              <div style="margin-top: var(--space-5)">
+                <div class="summary-row">
+                  <span>Subtotal</span><span class="value subtotal"></span>
+                </div>
+                <div class="summary-row">
+                  <span>Delivery Fee</span
+                  ><span class="value deliveryFee"></span>
+                </div>
+                <div class="summary-row">
+                  <span>Tax (8%)</span><span class="value tax"></span>
+                </div>
+                <div class="summary-row">
+                  <span>Discount</span
+                  ><span
+                    class="value discount"
+                    style="color: var(--color-success)"
+                    >−</span
+                  >
+                </div>
+                <div class="summary-row grand-total">
+                  <span>Total to Pay</span>
+                  <span class="value numeric grandTotal"></span>
                 </div>
               </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="cust-email" class="form-label">Email Address <span class="optional">(optional)</span></label>
-                  <input type="email" id="cust-email" class="input" placeholder="you@example.com" />
+
+              <div class="cart-actions">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                  <i class="fa-solid fa-lock"></i> Place Order
+                </button>
+                <a href="cart.html" class="btn btn-ghost btn-block"
+                  >Edit Cart</a
+                >
+              </div>
+            </aside>
+          </form>
+          <div id="addressOverlay" class="address-overlay">
+            <div class="address-modal">
+              <button
+                id="closeAddressModal"
+                class="close-btn"
+                type="button"
+                aria-label="Close"
+              >
+                &times;
+              </button>
+
+              <h2 class="modal-title">Add Address</h2>
+
+              <form id="addressForm">
+                <!-- Address Type -->
+                <div class="field-group">
+                  <label class="field-label">Address Type</label>
+                  <div class="address-type-group">
+                    <input
+                      type="radio"
+                      name="addressType"
+                      id="typeHome"
+                      value="home"
+                      checked
+                    />
+                    <label for="typeHome" class="type-card">
+                      <span class="type-icon">🏠</span>
+                      <span>Home</span>
+                    </label>
+
+                    <input
+                      type="radio"
+                      name="addressType"
+                      id="typeOffice"
+                      value="office"
+                    />
+                    <label for="typeOffice" class="type-card">
+                      <span class="type-icon">🏢</span>
+                      <span>Office</span>
+                    </label>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="cust-type" class="form-label">Order Type</label>
-                  <select id="cust-type" class="select">
-                    <option>Select</option>
-                    <option>Delivery</option>
-                    <option>Pickup</option>
+
+                <!-- House / Office Number -->
+                <div class="field-group">
+                  <label class="field-label" id="numberLabel" for="numberInput"
+                    >House Number</label
+                  >
+                  <input
+                    type="text"
+                    id="numberInput"
+                    class="text-input"
+                    placeholder="Enter house number"
+                    required
+                  />
+                </div>
+
+                <!-- Street -->
+                <div class="field-group">
+                  <label class="field-label" for="streetInput">Street</label>
+                  <input
+                    type="text"
+                    id="streetInput"
+                    class="text-input"
+                    placeholder="Enter street name"
+                    required
+                  />
+                </div>
+
+                <!-- City -->
+                <div class="field-group">
+                  <label class="field-label" for="cityInput">City</label>
+                  <select id="cityInput" class="text-input" required>
+                    <option value="Karachi">Karachi</option>
                   </select>
                 </div>
-              </div>
+
+                <!-- Save Button -->
+                <button type="submit" class="save-btn">Save Address</button>
+              </form>
             </div>
-
-            <!-- Delivery address -->
-            <div class="card card-padded checkout-section">
-              <div class="checkout-section-title">
-                <span class="checkout-step-num">2</span>
-                <h2 class="section-heading">Delivery Address</h2>
-              </div>
-
-              <label class="address-option is-selected">
-                <input type="radio" name="address" checked />
-                <div>
-                  <div class="address-option-title">Home <span class="badge badge-success">Default</span></div>
-                  <div class="address-option-text">House 21, Street 4, DHA Phase 6, Karachi, Pakistan</div>
-                </div>
-              </label>
-              <label class="address-option">
-                <input type="radio" name="address" />
-                <div>
-                  <div class="address-option-title">Office</div>
-                  <div class="address-option-text">Suite 302, Ocean Towers, Clifton, Karachi, Pakistan</div>
-                </div>
-              </label>
-
-              <button type="button" class="btn btn-outline btn-sm" style="margin-top: var(--space-2);">
-                <i class="fa-solid fa-plus"></i> Add New Address
-              </button>
-            </div>
-
-            <!-- Payment summary -->
-            <div class="card card-padded checkout-section">
-              <div class="checkout-section-title">
-                <span class="checkout-step-num">3</span>
-                <h2 class="section-heading">Payment Method</h2>
-              </div>
-              <p class="form-hint" style="margin-bottom: var(--space-4);">Payment display only — no live payment processing is connected in this UI.</p>
-
-              <label class="payment-method-option is-selected">
-                <input type="radio" name="payment" checked />
-                <i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery
-              </label>
-              <label class="payment-method-option">
-                <input type="radio" name="payment" />
-                <i class="fa-regular fa-credit-card"></i> Credit / Debit Card
-              </label>
-              <label class="payment-method-option">
-                <input type="radio" name="payment" />
-                <i class="fa-solid fa-wallet"></i> Digital Wallet
-              </label>
-            </div>
-
           </div>
-
-          <!-- Right column: order summary ticket -->
-          <aside class="ticket card-padded" style="--ticket-notch-top: 210px; position: sticky; top: calc(var(--topbar-height) + var(--space-6));">
-            <h2 class="section-heading">Order Summary</h2>
-
-            <div style="margin: var(--space-5) 0;">
-              <div class="order-summary-item">
-                <span><span class="qty-tag numeric">2×</span> Grilled Beef Burger</span>
-                <span class="numeric">$25.80</span>
-              </div>
-              <div class="order-summary-item">
-                <span><span class="qty-tag numeric">1×</span> Margherita Pizza</span>
-                <span class="numeric">$16.50</span>
-              </div>
-              <div class="order-summary-item">
-                <span><span class="qty-tag numeric">2×</span> Citrus Mint Cooler</span>
-                <span class="numeric">$10.00</span>
-              </div>
-            </div>
-
-            <hr class="ticket-tear" /> 
-
-            <div style="margin-top: var(--space-5);">
-              <div class="summary-row"><span>Subtotal</span><span class="value"></span></div>
-              <div class="summary-row"><span>Delivery Fee</span><span class="value"></span></div>
-              <div class="summary-row"><span>Tax (8%)</span><span class="value"></span></div>
-              <div class="summary-row"><span>Discount</span><span class="value" style="color: var(--color-success);">−</span></div>
-              <div class="summary-row grand-total">
-                <span>Total to Pay</span>
-                <span class="value numeric"></span>
-              </div>
-            </div>
-
-            <div class="cart-actions">
-              <button type="submit" class="btn btn-primary btn-lg btn-block">
-                <i class="fa-solid fa-lock"></i> Place Order
-              </button>
-              <a href="cart.html" class="btn btn-ghost btn-block">Edit Cart</a>
-            </div>
-          </aside>
-
-        </form>
-
-      </main>
+        </main>
+      </div>
     </div>
-  </div>
-</body>
+
+    <script type="module" src="../js/pages/orders.js"></script>
+  </body>
 </html>
