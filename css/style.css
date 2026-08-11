@@ -2627,7 +2627,7 @@ textarea:focus-visible,
 
 /* Overlay */
 .address-overlay {
-  display: flex;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;

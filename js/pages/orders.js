@@ -17,7 +17,17 @@ const elements = {
   custumerPhone: document.querySelector("#cust-phone"),
 
   // Delivery Address
-  
+  addAddressBtn: document.querySelector("#addAddressBtn"),
+  addressModal: document.querySelector("#addressOverlay"),
+  closeAddressModal: document.querySelector("#closeAddressModal"),
+  addressForm: document.querySelector("#addressForm"),
+
+
+  numberLabel : document.querySelector('#numberLabel'),
+  numberInput : document.querySelector('#numberInput'),
+  typeHome : document.querySelector('#typeHome'),
+  typeOffice : document.querySelector('#typeOffice'),
+  addAddress : d, 
 
   // Summery Items
   summertItem: document.querySelector(".summeryItems"),
@@ -37,12 +47,14 @@ const promoState = getData("promoState", {
 });
 
 function SummeryItem() {
-  elements.summertItem.innerHTML = cart.map(
-    (item) => `<div class="order-summary-item">
+  elements.summertItem.innerHTML = cart
+    .map(
+      (item) => `<div class="order-summary-item">
     <span><span class="qty-tag numeric">${item.quantity}x</span>${item.name}</span>
     <span class="numeric">${item.price * item.quantity}</span>
-    </div>`
-  ).join("")
+    </div>`,
+    )
+    .join("");
 }
 
 function renderOrderSummery() {
