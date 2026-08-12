@@ -22,12 +22,11 @@ const elements = {
   closeAddressModal: document.querySelector("#closeAddressModal"),
   addressForm: document.querySelector("#addressForm"),
 
-
-  numberLabel : document.querySelector('#numberLabel'),
-  numberInput : document.querySelector('#numberInput'),
-  typeHome : document.querySelector('#typeHome'),
-  typeOffice : document.querySelector('#typeOffice'),
-  addAddress : d, 
+  numberLabel: document.querySelector("#numberLabel"),
+  numberInput: document.querySelector("#numberInput"),
+  typeHome: document.querySelector("#typeHome"),
+  typeOffice: document.querySelector("#typeOffice"),
+  addressList: document.querySelector("#addressList"),
 
   // Summery Items
   summertItem: document.querySelector(".summeryItems"),
@@ -38,6 +37,9 @@ const elements = {
   taxElement: document.querySelector(".tax"),
   discountElement: document.querySelector(".discount"),
   grandTotalElement: document.querySelector(".grandTotal"),
+
+  // Payment Method
+  paymentList: document.querySelector("#paymentList"),
 };
 
 const promoState = getData("promoState", {
@@ -45,6 +47,16 @@ const promoState = getData("promoState", {
   discount: 0,
   applied: false,
 });
+
+// Helping Function:
+
+function addSelected(item) {
+  item.classList.add("is-selected");
+}
+
+function removeSelected(item) {
+  item.classList.remove("is-selected");
+}
 
 function SummeryItem() {
   elements.summertItem.innerHTML = cart
@@ -69,3 +81,17 @@ function renderOrderSummery() {
 }
 renderOrderSummery();
 SummeryItem();
+
+// Event Listening
+
+elements.paymentList.addEventListener("click", (e) => {
+  const clickedMethod = e.target.closest(".payment-method-option");
+
+  if (!clickedMethod) return;
+
+  elements.paymentList.querySelectorAll(".payment-method-option").forEach((option) => {
+    removeSelected(option)
+  })
+
+  addSelected(clickedMethod);
+});
