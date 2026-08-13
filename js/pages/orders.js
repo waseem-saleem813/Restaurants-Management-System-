@@ -67,6 +67,14 @@ function removeSelected(item) {
   item.classList.remove("is-selected");
 }
 
+function moduleOpen(){
+  elements.addressModal.classList.add("active")
+}
+
+function moduleClose(){
+  elements.addressModal.classList.remove("active")
+}
+
 function SummeryItem() {
   elements.summertItem.innerHTML = cart
     .map(
@@ -153,5 +161,9 @@ elements.placeOrder.addEventListener("click", (e) => {
   e.preventDefault();
   validationInfo();
 });
+
+elements.addAddressBtn.addEventListener("click", moduleOpen)
+
+elements.closeAddressModal.addEventListener("click", moduleClose)
 
 // Initialization
