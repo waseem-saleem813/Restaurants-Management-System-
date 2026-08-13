@@ -1,12 +1,7 @@
 import { cart } from "../data/cartdata.js";
 import { saveData, getData } from "../utils/storage.js";
 import { promoCodes } from "../data/promocodes.js";
-import {
-  formatCurrency,
-  calculatetotal,
-  calculateDiscount,
-  calculateOrderSummary,
-} from "../utils/helpers.js";
+import { formatCurrency, calculateOrderSummary } from "../utils/helpers.js";
 
 const elements = {
   // custumer Details
@@ -14,7 +9,6 @@ const elements = {
   custumerPhone: document.querySelector("#cust-phone"),
   custumerEmail: document.querySelector("#cust-email"),
   custumerType: document.querySelector("#cust-type"),
-  custumerPhone: document.querySelector("#cust-phone"),
 
   // Delivery Address
   addAddressBtn: document.querySelector("#addAddressBtn"),
@@ -40,6 +34,9 @@ const elements = {
 
   // Payment Method
   paymentList: document.querySelector("#paymentList"),
+
+  // Order Complet
+  placeOrder: document.querySelector("#placeOrder"),
 };
 
 const promoState = getData("promoState", {
@@ -48,7 +45,19 @@ const promoState = getData("promoState", {
   applied: false,
 });
 
+const coustmerDetails = getData("coustumerDetails", {
+  fullName: "",
+  phone: "",
+  email: "",
+  type: "",
+  // address: "",
+  // city: ""
+});
 // Helping Function:
+
+function saveCostumerDetails() {
+  saveData("coustumerDetails", coustmerDetails);
+}
 
 function addSelected(item) {
   item.classList.add("is-selected");
@@ -69,6 +78,47 @@ function SummeryItem() {
     .join("");
 }
 
+function costumerInfo() {
+  const costumerName = elements.custumerName.value.trim();
+  const costumerNumber = elements.custumerPhone.value.trim();
+  const costumerEmail = elements.custumerEmail.value.trim();
+  const costumerType = elements.custumerType.value;
+
+  coustmerDetails.fullName = costumerName;
+  coustmerDetails.phone = costumerNumber;
+  coustmerDetails.email = costumerEmail;
+  coustmerDetails.type = costumerType;
+
+  saveCostumerDetails();
+}
+
+function validationInfo() {
+  const costumerName = elements.custumerName.value.trim();
+  const costumerNumber = elements.custumerPhone.value.trim();
+  const costumerEmail = elements.custumerEmail.value.trim();
+  const costumerType = elements.custumerType.value;
+
+  if (
+    !costumerName ||
+    costumerNumber <= 0 ||
+    costumerType === "Select" ||
+    (costumerEmail && !costumerEmail.includes("@"))
+  ) {
+    alert(
+      !costumerName
+        ? "Please enter a valid name"
+        : costumerNumber <= 0
+        ? "Please enter a valid number"
+        : costumerType === "Select"
+        ? "Please enter a delivery type"
+        : "Please enter a valid email",
+    )
+
+    return;
+  }
+  costumerInfo();
+}
+
 function renderOrderSummery() {
   const { subtotal, discount, deliveryFee, tax, grandTotal } =
     calculateOrderSummary(cart, promoState, promoCodes);
@@ -79,6 +129,7 @@ function renderOrderSummery() {
   elements.discountElement.textContent = `-${formatCurrency(discount)}`;
   elements.grandTotalElement.textContent = formatCurrency(grandTotal);
 }
+
 renderOrderSummery();
 SummeryItem();
 
@@ -89,9 +140,18 @@ elements.paymentList.addEventListener("click", (e) => {
 
   if (!clickedMethod) return;
 
-  elements.paymentList.querySelectorAll(".payment-method-option").forEach((option) => {
-    removeSelected(option)
-  })
+  elements.paymentList
+    .querySelectorAll(".payment-method-option")
+    .forEach((option) => {
+      removeSelected(option);
+    });
 
   addSelected(clickedMethod);
 });
+
+elements.placeOrder.addEventListener("click", (e) => {
+  e.preventDefault();
+  validationInfo();
+});
+
+// Initialization

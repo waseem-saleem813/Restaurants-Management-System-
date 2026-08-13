@@ -134,7 +134,7 @@
                       type="text"
                       id="cust-name"
                       class="input"
-                      value="Daniel Reyes"
+                      placeholder="Daniel Reyes"
                       required
                     />
                   </div>
@@ -146,7 +146,7 @@
                       type="tel"
                       id="cust-phone"
                       class="input"
-                      value="+92 300 1234567"
+                      placeholder="+92 300 1234567"
                       required
                     />
                   </div>
@@ -270,7 +270,7 @@
               </div>
 
               <div class="cart-actions">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="placeOrder">
                   <i class="fa-solid fa-lock"></i> Place Order
                 </button>
                 <a href="cart.html" class="btn btn-ghost btn-block"
@@ -279,6 +279,9 @@
               </div>
             </aside>
           </form>
+
+
+          <!-- Address Module  -->
           <div id="addressOverlay" class="address-overlay">
             <div class="address-modal">
               <button
