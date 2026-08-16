@@ -2640,9 +2640,7 @@ textarea:focus-visible,
   padding: var(--space-4);
 }
 
-.address-overlay.active {
-  display: flex;
-}
+
 
 /* Modal */
 .address-modal {
@@ -2726,6 +2724,18 @@ textarea:focus-visible,
   color: var(--color-text);
   background: var(--color-surface);
   transition: border-color var(--transition-fast);
+}
+
+.alert {
+  display: none;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-left: 5px;
+  color: red;
+}
+
+.active {
+  display: flex;
 }
 
 .text-input:focus {

@@ -135,8 +135,8 @@
                       id="cust-name"
                       class="input"
                       placeholder="Daniel Reyes"
-                      required
                     />
+                    <p class="nameAlert alert">Please enter your name</p>
                   </div>
                   <div class="form-group">
                     <label for="cust-phone" class="form-label"
@@ -147,8 +147,8 @@
                       id="cust-phone"
                       class="input"
                       placeholder="+92 300 1234567"
-                      required
                     />
+                    <p class="numberAlert alert">Please enter a number</p>
                   </div>
                 </div>
                 <div class="form-row">
@@ -163,6 +163,7 @@
                       class="input"
                       placeholder="you@example.com"
                     />
+                    <p class="emailAlert alert">Please enter a correct Email</p>
                   </div>
                   <div class="form-group">
                     <label for="cust-type" class="form-label">Order Type</label>
@@ -171,6 +172,9 @@
                       <option>Delivery</option>
                       <option>Pickup</option>
                     </select>
+                    <p class="deliveryType alert">
+                      Please Select your delivery type
+                    </p>
                   </div>
                 </div>
               </div>
@@ -181,19 +185,9 @@
                   <span class="checkout-step-num">2</span>
                   <h2 class="section-heading">Delivery Address</h2>
                 </div>
-                <div id="addressList">
-                  <label class="address-option is-selected">
-                    <input type="radio" name="address" />
-                    <div>
-                      <div class="address-option-title">Office</div>
-                      <div class="address-option-text">
-                        Suite 302, Ocean Towers, Clifton, Karachi, Pakistan
-                      </div>
-                    </div>
-                  </label>
-                </div>
+                <div id="addressList"></div>
                 <button
-                id="addAddressBtn"
+                  id="addAddressBtn"
                   type="button"
                   class="btn btn-outline btn-sm"
                   style="margin-top: var(--space-2)"
@@ -213,18 +207,19 @@
                   in this UI.
                 </p>
                 <div id="paymentList">
-                <label class="payment-method-option is-selected">
-                  <input type="radio" name="payment" checked />
-                  <i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery
-                </label>
-                <label class="payment-method-option">
-                  <input type="radio" name="payment" />
-                  <i class="fa-regular fa-credit-card"></i> Credit / Debit Card
-                </label>
-                <label class="payment-method-option">
-                  <input type="radio" name="payment" />
-                  <i class="fa-solid fa-wallet"></i> Digital Wallet
-                </label>
+                  <label class="payment-method-option">
+                    <input type="radio" name="payment" value="cash" />
+                    <i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery
+                  </label>
+                  <label class="payment-method-option" id="Card">
+                    <input type="radio" name="payment" value="card" />
+                    <i class="fa-regular fa-credit-card"></i> Credit / Debit
+                    Card
+                  </label>
+                  <label class="payment-method-option" id="digitalWallet">
+                    <input type="radio" name="payment" value="wallet" />
+                    <i class="fa-solid fa-wallet"></i> Digital Wallet
+                  </label>
                 </div>
               </div>
             </div>
@@ -270,7 +265,11 @@
               </div>
 
               <div class="cart-actions">
-                <button type="submit" class="btn btn-primary btn-lg btn-block" id="placeOrder">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg btn-block"
+                  id="placeOrder"
+                >
                   <i class="fa-solid fa-lock"></i> Place Order
                 </button>
                 <a href="cart.html" class="btn btn-ghost btn-block"
@@ -279,7 +278,6 @@
               </div>
             </aside>
           </form>
-
 
           <!-- Address Module  -->
           <div id="addressOverlay" class="address-overlay">
@@ -334,21 +332,21 @@
                     type="text"
                     id="numberInput"
                     class="text-input"
-                    placeholder="Enter house number"
-                    required
+                    placeholder="House No. 45-B, Street 3,"
                   />
+                  <p class="addressAlert alert">Please enter a Address</p>
                 </div>
 
-                <!-- Street -->
+                <!-- area -->
                 <div class="field-group">
-                  <label class="field-label" for="streetInput">Street</label>
+                  <label class="field-label" for="streetInput">Area</label>
                   <input
                     type="text"
-                    id="streetInput"
+                    id="areaInput"
                     class="text-input"
-                    placeholder="Enter street name"
-                    required
+                    placeholder="Phase 5, D.H.A.,"
                   />
+                  <p class="areaAlert alert">Please enter a Area name</p>
                 </div>
 
                 <!-- City -->
@@ -363,6 +361,25 @@
                 <button type="submit" class="save-btn">Save Address</button>
               </form>
             </div>
+          </div>
+
+          <div
+            class="toast-stack"
+            style="bottom: var(--space-6); right: var(--space-6)"
+            aria-live="polite"
+          >
+            <!-- Order placed successfully -->
+            <div class="toast">
+              <div class="toast-icon"><i class="fa-solid fa-check"></i></div>
+              <div>
+                <div class="toast-title">Deleted successfully</div>
+                <div class="toast-message">Your item has been deleted</div>
+              </div>
+              <button class="toast-close" aria-label="Dismiss notification">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            
           </div>
         </main>
       </div>
