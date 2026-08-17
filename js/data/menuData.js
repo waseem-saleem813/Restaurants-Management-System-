@@ -6,7 +6,8 @@ export const menuData = [
     price: 650,
     rating: 4.8,
     image: "/assets/images/ZingerBurger.jpg",
-    description: "Crispy chicken fillet with fresh lettuce and creamy mayo."
+    description: "Crispy chicken fillet with fresh lettuce and creamy mayo.",
+    status: "Out of Stock",
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ export const menuData = [
     price: 850,
     rating: 4.7,
     image: "/assets/images/BeefBurger.jpg",
-    description: "Juicy grilled beef patty with cheese and special sauce."
+    description: "Juicy grilled beef patty with cheese and special sauce.",
+    status: "In Stock",
   },
   {
     id: 3,
@@ -24,7 +26,8 @@ export const menuData = [
     price: 1800,
     rating: 4.9,
     image: "/assets/images/PepperoniPizza.jpg",
-    description: "Loaded with pepperoni, mozzarella cheese, and tomato sauce."
+    description: "Loaded with pepperoni, mozzarella cheese, and tomato sauce.",
+    status: "In Stock",
   },
   {
     id: 4,
@@ -33,7 +36,8 @@ export const menuData = [
     price: 1700,
     rating: 4.8,
     image: "/assets/images/ChickenFajitaPizza.jpg",
-    description: "Spicy chicken fajita with onions, capsicum, and cheese."
+    description: "Spicy chicken fajita with onions, capsicum, and cheese.",
+    status: "In Stock",
   },
   {
     id: 5,
@@ -42,7 +46,8 @@ export const menuData = [
     price: 1200,
     rating: 4.6,
     image: "/assets/images/AlfredoPasta.jpg",
-    description: "Creamy Alfredo sauce with grilled chicken and parmesan."
+    description: "Creamy Alfredo sauce with grilled chicken and parmesan.",
+    status: "In Stock",
   },
   {
     id: 6,
@@ -51,7 +56,8 @@ export const menuData = [
     price: 1100,
     rating: 4.5,
     image: "/assets/images/RedSaucePasta.jpg",
-    description: "Classic tomato sauce pasta with herbs and cheese."
+    description: "Classic tomato sauce pasta with herbs and cheese.",
+    status: "In Stock",
   },
   {
     id: 7,
@@ -60,7 +66,8 @@ export const menuData = [
     price: 180,
     rating: 4.4,
     image: "/assets/images/Coca-Cola.jpg",
-    description: "Refreshing chilled Coca-Cola."
+    description: "Refreshing chilled Coca-Cola.",
+    status: "In Stock",
   },
   {
     id: 8,
@@ -69,7 +76,8 @@ export const menuData = [
     price: 250,
     rating: 4.6,
     image: "/assets/images/FreshLime.jpg",
-    description: "Freshly squeezed lime drink with mint."
+    description: "Freshly squeezed lime drink with mint.",
+    status: "In Stock",
   },
   {
     id: 9,
@@ -78,7 +86,8 @@ export const menuData = [
     price: 450,
     rating: 4.9,
     image: "/assets/images/ChocolateCake.jpg",
-    description: "Rich chocolate cake with smooth chocolate frosting."
+    description: "Rich chocolate cake with smooth chocolate frosting.",
+    status: "In Stock",
   },
   {
     id: 10,
@@ -87,8 +96,7 @@ export const menuData = [
     price: 350,
     rating: 4.7,
     image: "/assets/images/VanillaIceCream.jpg",
-    description: "Creamy vanilla ice cream topped with chocolate syrup."
-  }
+    description: "Creamy vanilla ice cream topped with chocolate syrup.",
+    status: "In Stock",
+  },
 ];
-
-

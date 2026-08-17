@@ -6,9 +6,7 @@ import {
   calculateOrderSummary,
 } from "../utils/helpers.js";
 
-// ==============================
 // DOM Elements
-// ==============================
 
 const elements = {
   // Customer Details
@@ -56,9 +54,7 @@ const elements = {
   placeOrder: document.querySelector("#placeOrder"),
 };
 
-// ==============================
 // State
-// ==============================
 
 const promoState = getData("promoState", {
   code: "",
@@ -149,9 +145,7 @@ function showNotification(notification) {
   }, 4400);
 }
 
-// ==============================
 // Customer Information
-// ==============================
 
 function costumerInfo() {
   const costumerName = elements.custumerName.value.trim();
@@ -181,12 +175,18 @@ function validationInfo() {
   ) {
     if (!costumerName) {
       showValidationAlert(elements.nameAlert);
+      elements.custumerName.focus();
     } else if (!costumerNumber) {
       showValidationAlert(elements.numberAlert);
+
+      elements.custumerPhone.focus();
     } else if (costumerType === "Select") {
       showValidationAlert(elements.deliveryType);
+      elements.custumerType.focus();
+
     } else {
       showValidationAlert(elements.emailAlert);
+      elements.custumerEmail.focus();
     }
 
     return false;
@@ -204,9 +204,7 @@ function validationInfo() {
   return true;
 }
 
-// ==============================
 // Address
-// ==============================
 
 function updateNumberField() {
   if (elements.typeOffice.checked) {
@@ -288,9 +286,7 @@ function renderAddress() {
   addressSelected = true;
 }
 
-// ==============================
 // Order Summary
-// ==============================
 
 function renderSummaryItems() {
   elements.summertItem.innerHTML = cart
@@ -342,9 +338,7 @@ function renderOrderSummary() {
     formatCurrency(grandTotal);
 }
 
-// ==============================
 // Place Order
-// ==============================
 
 function placeOrderProcess() {
   if (!customerValid) {
@@ -425,9 +419,7 @@ function placeOrderProcess() {
   renderOrderSummary();
 }
 
-// ==============================
 // Initialization
-// ==============================
 
 elements.toast.style.display = "none";
 
@@ -435,9 +427,7 @@ renderSummaryItems();
 renderOrderSummary();
 renderAddress();
 
-// ==============================
 // Event Listeners
-// ==============================
 
 // Payment
 

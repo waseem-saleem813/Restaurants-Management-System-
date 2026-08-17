@@ -1,11 +1,12 @@
 import { menuData } from "../data/menuData.js";
-import { cart } from "../data/cartdata.js"
+import { cart } from "../data/cartdata.js";
 import { saveData } from "../utils/storage.js";
+
 const foodGrid = document.querySelector("#food-grid");
 const cartUpdate = document.querySelector("#cartUpdate");
 
 function showLoading() {
-  let skeletonCard = ""
+  let skeletonCard = "";
   for (const _ of menuData) {
     skeletonCard += `
             <div class="skeleton-card">
@@ -18,7 +19,6 @@ function showLoading() {
   }
   foodGrid.innerHTML = skeletonCard;
 }
-
 
 function showProducts() {
   let card = "";
@@ -69,22 +69,21 @@ function showProducts() {
   `;
   }
 
-
   foodGrid.innerHTML = card;
-};
+}
 
-showLoading()
+showLoading();
 
 setTimeout(() => {
   showProducts();
 }, 2000);
 
-foodGrid.addEventListener('click', (event) => {
+foodGrid.addEventListener("click", (event) => {
   const button = event.target.closest(".addBtn");
   if (!button) return;
   const btnID = Number(button.dataset.id);
-  const product = menuData.find(item => item.id === btnID);
-  const existingProduct = cart.find(item => item.id === btnID);
+  const product = menuData.find((item) => item.id === btnID);
+  const existingProduct = cart.find((item) => item.id === btnID);
   if (existingProduct) {
     // Agar pehle se hai
     existingProduct.quantity++;
@@ -92,10 +91,11 @@ foodGrid.addEventListener('click', (event) => {
     // Agar pehli baar add ho raha hai
     cart.push({
       ...product,
-      quantity: 1
+      quantity: 1,
     });
+    cartUpdate.textContent = `View Cart (${cart.length})`;
   }
   saveData("cart", cart);
-})
+});
 
-cartUpdate.textContent = `View Cart (${cart.length})`
+cartUpdate.textContent = `View Cart (${cart.length})`;
