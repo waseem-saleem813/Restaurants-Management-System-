@@ -175,6 +175,9 @@
                     class="input"
                     placeholder="e.g. Smoked Chicken Wrap"
                   />
+                  <p class="foodInputAlert alert">
+                      Please enter a food name.
+                    </p>
                 </div>
 
                 <!-- category  -->
@@ -189,7 +192,7 @@
                     <option>Drink</option>
                     <option>Dessert</option>
                   </select>
-                   <p class="category alert">
+                   <p class="foodCategoryAlert alert">
                       Please Select your category type
                     </p>
                 </div>
@@ -205,6 +208,9 @@
                     step="0.01"
                     min="0"
                   />
+                  <p class="foodNumberAlert alert">
+                      Please enter food prices 
+                    </p>
                 </div>
 
                 <!-- stock -->
@@ -229,20 +235,25 @@
                     class="textarea"
                     placeholder="Short description shown on the menu card…"
                   ></textarea>
+                  <p class="foodDescAlert alert">
+                      Please enter a food desc. 
+                    </p>
                 </div>
 
                 <!-- Image  -->
 
                 <div class="form-group full-width">
                   <label class="form-label">Food Image</label>
-                  <div class="image-upload-box">
+                  <img id="preview" width="200">
+
+                  <div class="image-upload-box" >
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                     Drag and drop an image here, or
                     <strong style="color: var(--color-primary-dark)"
-                      >browse files</strong
+                      id="browseFile">browse files</strong
                     >
                     <div class="form-hint" style="margin-top: var(--space-2)">
-                      PNG or JPG, up to 5MB
+                      PNG or JPG, up to 10MB
                     </div>
                   </div>
 

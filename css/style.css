@@ -2728,8 +2728,7 @@ textarea:focus-visible,
 
 .alert {
   display: none;
-  font-size: 12px;
-  margin-top: 8px;
+  font-size: 10px;
   margin-left: 5px;
   color: red;
 }

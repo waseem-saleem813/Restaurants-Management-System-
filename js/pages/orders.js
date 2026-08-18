@@ -77,9 +77,7 @@ let customerValid = false;
 let addressSelected = false;
 let paymentMethod = "";
 
-// ==============================
 // Helper Functions
-// ==============================
 
 function saveCostumerDetails() {
   saveData("coustumerDetails", coustmerDetails);
