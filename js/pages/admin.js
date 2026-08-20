@@ -33,6 +33,11 @@ const elements = {
   foodDescAlert: document.querySelector(".foodDescAlert"),
 
   // Menu Table
+
+  itemSearch : document.querySelector("#admin-search"),
+  itemcategory : document.querySelector("#categoryItems"),
+  itemStatus : document.querySelector("#itemStatus"),
+  itemBody : document.querySelector("#itemBody"),
 };
 
 // state
@@ -157,6 +162,56 @@ function addItemInputClear() {
   elements.preview.src = "";
   imageUrl = "";
 }
+
+// Menu Table 
+
+function menuTableItemsAdd() {
+elements.itemBody.innerHTML = menuDatas.map((item) => {
+    return `<tr>
+                    <td>
+                      <div class="food-thumb-cell">
+                        <img
+                          src="${item.image}"
+                          alt="${item.name}"
+                        />
+                        <span class="table-cell-title"
+                          >${item.name}</span
+                        >
+                      </div>
+                    </td>
+                    <td>${item.category}</td>
+                    <td class="numeric">RS:${item.price}</td>
+                    <td>
+                      <span class="badge badge-danger">${item.status}</span>
+                    </td>
+                    <td>
+                      <span class="rating"
+                        ><i class="fa-solid fa-star"></i>${item.rating}</span
+                      >
+                    </td>
+                    <td>
+                      <div class="table-actions">
+                        <button
+                          class="icon-btn btn-icon-only"
+                          aria-label="${item.name}"
+                        >
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button
+                          class="icon-btn btn-icon-only"
+                          aria-label="${item.name}"
+                          style="color: var(--color-danger)"
+                        >
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+    `
+  }).join("");
+}
+
+menuTableItemsAdd()
 
 statisticCardLive();
 

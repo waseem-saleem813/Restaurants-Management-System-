@@ -163,9 +163,8 @@
               </div>
             </div>
 
-            <form>  
+            <form>
               <div class="admin-form-grid">
-
                 <!-- Name  -->
                 <div class="form-group">
                   <label for="food-name" class="form-label">Food Name</label>
@@ -175,16 +174,14 @@
                     class="input"
                     placeholder="e.g. Smoked Chicken Wrap"
                   />
-                  <p class="foodInputAlert alert">
-                      Please enter a food name.
-                    </p>
+                  <p class="foodInputAlert alert">Please enter a food name.</p>
                 </div>
 
                 <!-- category  -->
 
                 <div class="form-group">
                   <label for="food-category" class="form-label">Category</label>
-                  <select id="food-category" class="select" >
+                  <select id="food-category" class="select">
                     <option value="Select a category">Select a category</option>
                     <option>Burgers</option>
                     <option>Pizza</option>
@@ -192,9 +189,9 @@
                     <option>Drink</option>
                     <option>Dessert</option>
                   </select>
-                   <p class="foodCategoryAlert alert">
-                      Please Select your category type
-                    </p>
+                  <p class="foodCategoryAlert alert">
+                    Please Select your category type
+                  </p>
                 </div>
 
                 <!-- price -->
@@ -208,9 +205,7 @@
                     step="0.01"
                     min="0"
                   />
-                  <p class="foodNumberAlert alert">
-                      Please enter food prices 
-                    </p>
+                  <p class="foodNumberAlert alert">Please enter food prices</p>
                 </div>
 
                 <!-- stock -->
@@ -235,22 +230,22 @@
                     class="textarea"
                     placeholder="Short description shown on the menu card…"
                   ></textarea>
-                  <p class="foodDescAlert alert">
-                      Please enter a food desc. 
-                    </p>
+                  <p class="foodDescAlert alert">Please enter a food desc.</p>
                 </div>
 
                 <!-- Image  -->
 
                 <div class="form-group full-width">
                   <label class="form-label">Food Image</label>
-                  <img id="preview" width="200">
+                  <img id="preview" width="200" />
 
-                  <div class="image-upload-box" >
+                  <div class="image-upload-box">
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                     Drag and drop an image here, or
-                    <strong style="color: var(--color-primary-dark)"
-                      id="browseFile">browse files</strong
+                    <strong
+                      style="color: var(--color-primary-dark)"
+                      id="browseFile"
+                      >browse files</strong
                     >
                     <div class="form-hint" style="margin-top: var(--space-2)">
                       PNG or JPG, up to 10MB
@@ -379,16 +374,23 @@ San Marzano tomato sauce, fresh mozzarella, basil leaves and extra virgin olive 
                 />
               </div>
               <div class="admin-toolbar-filters">
-                <select class="select" aria-label="Filter by category">
+                <select
+                  class="select"
+                  id="categoryItems"
+                  aria-label="Filter by category"
+                >
                   <option>All Categories</option>
-                  <option>Starters</option>
-                  <option>Main Course</option>
                   <option>Burgers</option>
                   <option>Pizza</option>
-                  <option>Desserts</option>
-                  <option>Beverages</option>
+                  <option>Pasta</option>
+                  <option>Drink</option>
+                  <option>Dessert</option>
                 </select>
-                <select class="select" aria-label="Filter by status">
+                <select
+                  class="select"
+                  id="itemStatus"
+                  aria-label="Filter by status"
+                >
                   <option>All Status</option>
                   <option>In Stock</option>
                   <option>Low Stock</option>
@@ -412,119 +414,7 @@ San Marzano tomato sauce, fresh mozzarella, basil leaves and extra virgin olive 
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="food-thumb-cell">
-                        <img
-                          src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=100&h=100&fit=crop"
-                          alt=""
-                        />
-                        <span class="table-cell-title"
-                          >Grilled Beef Burger</span
-                        >
-                      </div>
-                    </td>
-                    <td>Burgers</td>
-                    <td class="numeric">$12.90</td>
-                    <td><span class="badge badge-success">In Stock</span></td>
-                    <td>
-                      <span class="rating"
-                        ><i class="fa-solid fa-star"></i> 4.8</span
-                      >
-                    </td>
-                    <td>
-                      <div class="table-actions">
-                        <button
-                          class="icon-btn btn-icon-only"
-                          aria-label="Edit Grilled Beef Burger"
-                        >
-                          <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button
-                          class="icon-btn btn-icon-only"
-                          aria-label="Delete Grilled Beef Burger"
-                          style="color: var(--color-danger)"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="food-thumb-cell">
-                        <img
-                          src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=100&h=100&fit=crop"
-                          alt=""
-                        />
-                        <span class="table-cell-title">Margherita Pizza</span>
-                      </div>
-                    </td>
-                    <td>Pizza</td>
-                    <td class="numeric">$16.50</td>
-                    <td><span class="badge badge-success">In Stock</span></td>
-                    <td>
-                      <span class="rating"
-                        ><i class="fa-solid fa-star"></i> 4.6</span
-                      >
-                    </td>
-                    <td>
-                      <div class="table-actions">
-                        <button
-                          class="icon-btn btn-icon-only"
-                          aria-label="Edit Margherita Pizza"
-                        >
-                          <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button
-                          class="icon-btn btn-icon-only"
-                          aria-label="Delete Margherita Pizza"
-                          style="color: var(--color-danger)"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="food-thumb-cell">
-                        <img
-                          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=100&h=100&fit=crop"
-                          alt=""
-                        />
-                        <span class="table-cell-title"
-                          >Creamy Alfredo Pasta</span
-                        >
-                      </div>
-                    </td>
-                    <td>Main Course</td>
-                    <td class="numeric">$14.20</td>
-                    <td><span class="badge badge-warning">Low Stock</span></td>
-                    <td>
-                      <span class="rating"
-                        ><i class="fa-solid fa-star"></i> 4.7</span
-                      >
-                    </td>
-                    <td>
-                      <div class="table-actions">
-                        <button
-                          class="icon-btn btn-icon-only"
-                          aria-label="Edit Creamy Alfredo Pasta"
-                        >
-                          <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button
-                          class="icon-btn btn-icon-only"
-                          aria-label="Delete Creamy Alfredo Pasta"
-                          style="color: var(--color-danger)"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                <tbody id="itemBody">
                   <tr>
                     <td>
                       <div class="food-thumb-cell">
