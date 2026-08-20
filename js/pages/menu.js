@@ -1,13 +1,18 @@
 import { menuData } from "../data/menuData.js";
 import { cart } from "../data/cartdata.js";
-import { saveData } from "../utils/storage.js";
+import { saveData, getData } from "../utils/storage.js";
 
 const foodGrid = document.querySelector("#food-grid");
 const cartUpdate = document.querySelector("#cartUpdate");
 
+const menuDatas  = getData("menuData", menuData);
+
+
+// const menuDatas = getData("menuData" , []);
+
 function showLoading() {
   let skeletonCard = "";
-  for (const _ of menuData) {
+  for (const _ of menuDatas) {
     skeletonCard += `
             <div class="skeleton-card">
               <div class="skeleton skeleton-thumb"></div>
@@ -22,7 +27,7 @@ function showLoading() {
 
 function showProducts() {
   let card = "";
-  for (const food of menuData) {
+  for (const food of menuDatas) {
     card += `
     <article class="food-card">
       <div class="food-card-media">
@@ -82,7 +87,7 @@ foodGrid.addEventListener("click", (event) => {
   const button = event.target.closest(".addBtn");
   if (!button) return;
   const btnID = Number(button.dataset.id);
-  const product = menuData.find((item) => item.id === btnID);
+  const product = menuDatas.find((item) => item.id === btnID);
   const existingProduct = cart.find((item) => item.id === btnID);
   if (existingProduct) {
     // Agar pehle se hai

@@ -1,5 +1,7 @@
 // Imports
 import { menuData } from "../data/menuData.js";
+import { saveData, getData } from "../utils/storage.js";
+const menuDatas = getData("menuData", menuData);
 
 // Dom Elements
 
@@ -50,11 +52,11 @@ function removeValidationAlert(item) {
 // statistic Card
 
 function totalMenuItems() {
-  elements.menuItems.textContent = menuData.length;
+  elements.menuItems.textContent = menuDatas.length;
 }
 
 function updateActiveItems() {
-  let activeItems = menuData.filter((item) => {
+  let activeItems = menuDatas.filter((item) => {
     return item.status === "In Stock";
   });
 
@@ -62,7 +64,7 @@ function updateActiveItems() {
 }
 
 function updateOutOfStock() {
-  let outOfStock = menuData.filter((item) => {
+  let outOfStock = menuDatas.filter((item) => {
     return item.status === "Out of Stock";
   });
 
@@ -70,7 +72,7 @@ function updateOutOfStock() {
 }
 
 function categoryItems() {
-  let categoryItems = [...new Set(menuData.map((item) => item.category))];
+  let categoryItems = [...new Set(menuDatas.map((item) => item.category))];
 
   elements.categoryItems.textContent = categoryItems.length;
 }
@@ -85,10 +87,10 @@ function statisticCardLive() {
 // Add Food Item Form
 
 function createFoodItem() {
-  const id = Math.max(...menuData.map((item) => item.id)) + 1;
+  const id = Math.max(...menuDatas.map((item) => item.id)) + 1;
   const name = elements.foodName.value.trim();
   const category = elements.foodCategory.value.trim();
-  const price = elements.foodPrice.value.trim();
+  const price = Number(elements.foodPrice.value.trim());
   const description = elements.foodDesc.value.trim();
   const status = elements.foodStock.value.trim();
 
@@ -102,7 +104,9 @@ function createFoodItem() {
     description,
     status,
   };
-  console.log(foodItem);
+  menuDatas.push(foodItem);
+  saveData("menuData", menuDatas);
+  statisticCardLive();
 }
 
 function itemValidation() {
@@ -110,11 +114,12 @@ function itemValidation() {
   const foodCategory = elements.foodCategory.value.trim();
   const foodPrice = elements.foodPrice.value.trim();
   const foodDesc = elements.foodDesc.value.trim();
-
+  // const images  = imageUrl.length;
   if (
     !foodInput ||
     foodCategory === "Select a category" ||
     foodPrice <= 0 ||
+    !imageUrl ||
     !foodDesc
   ) {
     if (!foodInput) {
@@ -127,6 +132,8 @@ function itemValidation() {
       showValidationAlert(elements.foodNumberAlert);
 
       elements.foodPrice.focus();
+    } else if (!imageUrl) {
+      alert("Select image");
     } else {
       showValidationAlert(elements.foodDescAlert);
       elements.foodDesc.focus();
@@ -134,11 +141,23 @@ function itemValidation() {
 
     return;
   }
-
+  removeValidationAlert(elements.foodInputAlert);
+  removeValidationAlert(elements.foodCategoryAlert);
+  removeValidationAlert(elements.foodNumberAlert);
+  removeValidationAlert(elements.foodDescAlert);
   createFoodItem();
+  addItemInputClear();
 }
 
-createFoodItem();
+function addItemInputClear() {
+  elements.foodName.value = "";
+  elements.foodCategory.value = "Select a category";
+  elements.foodPrice.value = "";
+  elements.foodDesc.value = "";
+  elements.preview.src = "";
+  imageUrl = "";
+}
+
 statisticCardLive();
 
 // Event listening
@@ -149,6 +168,9 @@ elements.browseFiles.addEventListener("click", () => {
 
 elements.foodImage.addEventListener("change", () => {
   const file = elements.foodImage.files[0];
+  if (!file) {
+    return;
+  }
   const sizeInMB = file.size / (1024 * 1024);
   if (sizeInMB > 10) {
     alert("Image 10MB se zyada nahi honi chahiye");
@@ -160,7 +182,7 @@ elements.foodImage.addEventListener("change", () => {
   reader.onload = () => {
     console.log("Image read ho gayi!");
     imageUrl = reader.result;
-    preview.src = reader.result;
+    elements.preview.src = reader.result;
   };
 
   reader.readAsDataURL(file);
