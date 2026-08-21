@@ -26,7 +26,7 @@
 
       <nav class="sidebar-nav" aria-label="Main menu">
         <span class="sidebar-section-label">Overview</span>
-        <a href="index.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i><span>Dashboard</span></a>
+        <a href="../index.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i><span>Dashboard</span></a>
         <a href="menu.html" class="sidebar-link is-active" aria-current="page"><i class="fa-solid fa-book-open"></i><span>Menu</span></a>
         <a href="cart.html" class="sidebar-link"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a>
         <a href="orders.html" class="sidebar-link"><i class="fa-solid fa-receipt"></i><span>Checkout</span></a>
@@ -79,7 +79,7 @@
           </div>
           <div class="content-header-actions">
             <a href="cart.html" class="btn btn-outline"><i class="fa-solid fa-cart-shopping" ></i><span id="cartUpdate"></span></a>
-            <a href="admin.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Food Item</a>
+            <a href="admin.html#addItem" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Food Item</a>
           </div>
         </div>
 
@@ -101,16 +101,15 @@
         <!-- Category filter chips -->
         <div class="category-filters" role="group" aria-label="Filter by category">
           <span class="tag is-active">All Items</span>
-          <span class="tag">Starters</span>
-          <span class="tag">Main Course</span>
           <span class="tag">Burgers</span>
           <span class="tag">Pizza</span>
+          <span class="tag">Pasta</span>
+          <span class="tag">Drinks</span>
           <span class="tag">Desserts</span>
-          <span class="tag">Beverages</span>
         </div>
 
         <!-- Price filter -->
-        <div class="price-filter-panel">
+        <!-- <div class="price-filter-panel">
           <span class="form-label" style="white-space: nowrap;">Price Range</span>
           <div class="price-range-track">
             <div class="price-range-fill"></div>
@@ -119,7 +118,7 @@
           </div>
           <span class="price-value-box numeric">$5 – $35</span>
           <button class="btn btn-ghost btn-sm">Reset</button>
-        </div>
+        </div> -->
 
         <!-- Food card grid -->
         <section class="food-grid" id="food-grid" aria-label="Menu items">
